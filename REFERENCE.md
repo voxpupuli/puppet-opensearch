@@ -9,7 +9,7 @@
 #### Public Classes
 
 * [`opensearch`](#opensearch): Module to manage opensearch.
-* [`opensearch::params`](#opensearchparams): Default values.
+* [`opensearch::params`](#opensearch--params): Default values.
 
 #### Private Classes
 
@@ -31,25 +31,25 @@ Module to manage opensearch.
 
 The following parameters are available in the `opensearch` class:
 
-* [`version`](#version)
-* [`manage_package`](#manage_package)
-* [`package_install_method`](#package_install_method)
-* [`package_ensure`](#package_ensure)
-* [`package_architecture`](#package_architecture)
-* [`package_provider`](#package_provider)
-* [`package_directory`](#package_directory)
-* [`manage_config`](#manage_config)
-* [`use_default_settings`](#use_default_settings)
-* [`default_settings`](#default_settings)
-* [`settings`](#settings)
-* [`heap_size`](#heap_size)
-* [`manage_service`](#manage_service)
-* [`service_ensure`](#service_ensure)
-* [`service_enable`](#service_enable)
-* [`restart_on_config_change`](#restart_on_config_change)
-* [`restart_on_package_change`](#restart_on_package_change)
+* [`version`](#-opensearch--version)
+* [`manage_package`](#-opensearch--manage_package)
+* [`package_install_method`](#-opensearch--package_install_method)
+* [`package_ensure`](#-opensearch--package_ensure)
+* [`package_architecture`](#-opensearch--package_architecture)
+* [`package_provider`](#-opensearch--package_provider)
+* [`package_directory`](#-opensearch--package_directory)
+* [`manage_config`](#-opensearch--manage_config)
+* [`use_default_settings`](#-opensearch--use_default_settings)
+* [`default_settings`](#-opensearch--default_settings)
+* [`settings`](#-opensearch--settings)
+* [`heap_size`](#-opensearch--heap_size)
+* [`manage_service`](#-opensearch--manage_service)
+* [`service_ensure`](#-opensearch--service_ensure)
+* [`service_enable`](#-opensearch--service_enable)
+* [`restart_on_config_change`](#-opensearch--restart_on_config_change)
+* [`restart_on_package_change`](#-opensearch--restart_on_package_change)
 
-##### <a name="version"></a>`version`
+##### <a name="-opensearch--version"></a>`version`
 
 Data type: `String`
 
@@ -57,15 +57,15 @@ The version to be installed. See also: https://opensearch.org/downloads.html
 
 Default value: `'2.5.0'`
 
-##### <a name="manage_package"></a>`manage_package`
+##### <a name="-opensearch--manage_package"></a>`manage_package`
 
 Data type: `Boolean`
 
 Whether to manage the package installation-
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="package_install_method"></a>`package_install_method`
+##### <a name="-opensearch--package_install_method"></a>`package_install_method`
 
 Data type: `Enum['archive', 'package', 'repository']`
 
@@ -73,7 +73,7 @@ The installation method for the package.
 
 Default value: `'package'`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-opensearch--package_ensure"></a>`package_ensure`
 
 Data type: `Enum['present', 'absent']`
 
@@ -81,7 +81,7 @@ The status of the package.
 
 Default value: `'present'`
 
-##### <a name="package_architecture"></a>`package_architecture`
+##### <a name="-opensearch--package_architecture"></a>`package_architecture`
 
 Data type: `Enum['x64', 'arm64']`
 
@@ -89,7 +89,7 @@ The architecture for the package.
 
 Default value: `$opensearch::params::package_architecture`
 
-##### <a name="package_provider"></a>`package_provider`
+##### <a name="-opensearch--package_provider"></a>`package_provider`
 
 Data type: `Enum['dpkg', 'rpm']`
 
@@ -97,7 +97,7 @@ The provider for the package to be used to install the package.
 
 Default value: `$opensearch::params::package_provider`
 
-##### <a name="package_directory"></a>`package_directory`
+##### <a name="-opensearch--package_directory"></a>`package_directory`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -105,23 +105,23 @@ The directory to install the package. Only used for package_install_method = 'ar
 
 Default value: `'/opt/opensearch'`
 
-##### <a name="manage_config"></a>`manage_config`
+##### <a name="-opensearch--manage_config"></a>`manage_config`
 
 Data type: `Boolean`
 
 Whether to manage the configuration.
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="use_default_settings"></a>`use_default_settings`
+##### <a name="-opensearch--use_default_settings"></a>`use_default_settings`
 
 Data type: `Boolean`
 
 Whether to use the modules default settings values.
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="default_settings"></a>`default_settings`
+##### <a name="-opensearch--default_settings"></a>`default_settings`
 
 Data type: `Hash`
 
@@ -129,15 +129,15 @@ The modules default settings for opensearch.
 
 Default value: `$opensearch::params::default_settings`
 
-##### <a name="settings"></a>`settings`
+##### <a name="-opensearch--settings"></a>`settings`
 
 Data type: `Optional[Hash]`
 
 Additional settings for opensearch.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="heap_size"></a>`heap_size`
+##### <a name="-opensearch--heap_size"></a>`heap_size`
 
 Data type: `Pattern[/\d+[mg]/]`
 
@@ -145,15 +145,15 @@ The heap size for the JVM.
 
 Default value: `'512m'`
 
-##### <a name="manage_service"></a>`manage_service`
+##### <a name="-opensearch--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Whether to manage the opensearch service.
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="service_ensure"></a>`service_ensure`
+##### <a name="-opensearch--service_ensure"></a>`service_ensure`
 
 Data type: `Enum['running', 'stopped']`
 
@@ -161,31 +161,31 @@ The state for the opensearch service.
 
 Default value: `'running'`
 
-##### <a name="service_enable"></a>`service_enable`
+##### <a name="-opensearch--service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
 Whether to enable the service.
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_config_change"></a>`restart_on_config_change`
+##### <a name="-opensearch--restart_on_config_change"></a>`restart_on_config_change`
 
 Data type: `Boolean`
 
 Restart the service on any config changes
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="restart_on_package_change"></a>`restart_on_package_change`
+##### <a name="-opensearch--restart_on_package_change"></a>`restart_on_package_change`
 
 Data type: `Boolean`
 
 Restart the service on package changes
 
-Default value: ``true``
+Default value: `true`
 
-### <a name="opensearchparams"></a>`opensearch::params`
+### <a name="opensearch--params"></a>`opensearch::params`
 
 Default values.
 

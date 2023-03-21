@@ -53,8 +53,8 @@ class opensearch (
   Enum['archive', 'package', 'repository'] $package_install_method    = 'package',
   Enum['present', 'absent']                $package_ensure            = 'present',
   Enum['x64', 'arm64']                     $package_architecture      = $opensearch::params::package_architecture,
-  Optional[Enum['dpkg', 'rpm']]            $package_provider          = $opensearch::params::package_provider,
-  Optional[Stdlib::Absolutepath]           $package_directory         = '/opt/opensearch',
+  Enum['dpkg', 'rpm']                      $package_provider          = $opensearch::params::package_provider,
+  Stdlib::Absolutepath                     $package_directory         = '/opt/opensearch',
 
   ##
   ## opensearch settings

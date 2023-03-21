@@ -91,7 +91,7 @@ Default value: `$opensearch::params::package_architecture`
 
 ##### <a name="package_provider"></a>`package_provider`
 
-Data type: `Optional[Enum['dpkg', 'rpm']]`
+Data type: `Enum['dpkg', 'rpm']`
 
 The provider for the package to be used to install the package.
 
@@ -99,7 +99,7 @@ Default value: `$opensearch::params::package_provider`
 
 ##### <a name="package_directory"></a>`package_directory`
 
-Data type: `Optional[Stdlib::Absolutepath]`
+Data type: `Stdlib::Absolutepath`
 
 The directory to install the package. Only used for package_install_method = 'archive'.
 

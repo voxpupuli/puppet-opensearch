@@ -62,7 +62,7 @@ class opensearch (
   Boolean                                  $manage_config             = true,
   Boolean                                  $use_default_settings      = true,
   Hash                                     $default_settings          = $opensearch::params::default_settings,
-  Optional[Hash]                           $settings                  = undef,
+  Hash                                     $settings                  = {},
 
   ##
   ## java settings
@@ -82,7 +82,7 @@ class opensearch (
   contain opensearch::install
   contain opensearch::service
 
-  Class['opensearch::install'] -> Class['opensearch::config']
+  Class['opensearch::install'] -> Class['opensearch::config'] -> Class['opensearch::service']
 
   if $restart_on_package_change {
     Class['opensearch::install'] ~> Class['opensearch::service']

@@ -1,5 +1,7 @@
 ---
 fixtures:
   forge_modules:
-    stdlib: 'puppetlabs-stdlib'
     archive: 'puppet-archive'
+    stdlib: 'puppetlabs-stdlib'
+    systemd: 'puppet-systemd'
+    yumrepo: 'puppetlabs-yumrepo_core'

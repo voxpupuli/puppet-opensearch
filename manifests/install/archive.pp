@@ -4,10 +4,10 @@
 # @api private
 #
 class opensearch::install::archive (
-  $version      = $opensearch::version,
-  $ensure       = $opensearch::package_ensure,
   $architecture = $opensearch::package_architecture,
   $directory    = $opensearch::package_directory,
+  $ensure       = $opensearch::package_ensure,
+  $version      = $opensearch::version,
 ) {
   assert_private()
 
@@ -40,7 +40,7 @@ class opensearch::install::archive (
       group  => 'opensearch',
     }
 
-    archive { "/tmp/opensearch-${version}-linux-x64.tar.gz":
+    archive { "/tmp/${file}":
       provider        => 'wget',
       path            => "/tmp/${file}",
       extract         => true,

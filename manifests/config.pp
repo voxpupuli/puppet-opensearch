@@ -7,10 +7,9 @@ class opensearch::config (
   ##
   ## opensearch settings
   ##
-  $manage_config        = $opensearch::manage_config,
-  $use_default_settings = $opensearch::use_default_settings,
   $default_settings     = $opensearch::default_settings,
   $settings             = $opensearch::settings,
+  $use_default_settings = $opensearch::use_default_settings,
 
   ##
   ## java settings
@@ -25,10 +24,9 @@ class opensearch::config (
       default   => '/etc/opensearch',
     }
 
-    if $use_default_settings {
-      $data = merge($default_settings, $settings)
-    } else {
-      $data = $settings
+    $data = $use_default_settings ? {
+      true  => merge($default_settings, $settings),
+      false => $settings,
     }
 
     file { "${config_directory}/opensearch.yml":

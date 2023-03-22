@@ -14,7 +14,6 @@ class opensearch::install::repository::redhat (
     repo_gpgcheck => '1',
     gpgcheck      => '1',
     gpgkey        => 'https://artifacts.opensearch.org/publickeys/opensearch.pgp',
-    type          => 'rpm-md',
   }
 
   package { 'opensearch':

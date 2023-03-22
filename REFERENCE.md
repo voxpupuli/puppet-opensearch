@@ -131,11 +131,11 @@ Default value: `$opensearch::params::default_settings`
 
 ##### <a name="-opensearch--settings"></a>`settings`
 
-Data type: `Optional[Hash]`
+Data type: `Hash`
 
 Additional settings for opensearch.
 
-Default value: `undef`
+Default value: `{}`
 
 ##### <a name="-opensearch--heap_size"></a>`heap_size`
 

@@ -1,23 +1,23 @@
-# @summary
-#   Default values.
-#
-class opensearch::params (
-) {
-  $package_architecture = $facts['os']['architecture'] ? {
-    /(amd64|x64|x86_64)/ => 'x64',
-    'arm64'              => 'arm64',
-    default              => fail("The system architecture you are using (${facts['os']['architecture']}) is not compatible with this module!"),
-  }
+# frozen_string_literal: true
 
-  $package_provider = $facts['os']['family'] ? {
-    'RedHat' => 'rpm',
-    'Debian' => 'dpkg',
-    default  => undef,
-  }
+def get_defaults(facts)
+  package_architecture = case facts[:os]['architecture']
+                         when %r{(amd64|x64|x86_64)}
+                           'x64'
+                         when 'arm64'
+                           'arm64'
+                         end
 
-  $default_settings = {
+  package_provider = case facts[:os]['family']
+                     when 'RedHat'
+                       'rpm'
+                     when 'Debian'
+                       'dpkg'
+                     end
+
+  default_settings = {
     'cluster.name'                                                 => 'opensearch',
-    'cluster.initial_cluster_manager_nodes'                        => $facts['networking']['hostname'],
+    'cluster.initial_cluster_manager_nodes'                        => facts[:networking]['hostname'],
     'discovery.seed_hosts'                                         => [
       '127.0.0.1',
     ],
@@ -25,7 +25,7 @@ class opensearch::params (
     'http.port'                                                    => 9200,
     'network.host'                                                 => '127.0.0.1',
     'node.max_local_storage_nodes'                                 => 3,
-    'node.name'                                                    => $facts['networking']['hostname'],
+    'node.name'                                                    => facts[:networking]['hostname'],
     'path.data'                                                    => '/var/lib/opensearch',
     'path.logs'                                                    => '/var/log/opensearch',
     'plugins.security.allow_default_init_securityindex'            => true,
@@ -37,9 +37,9 @@ class opensearch::params (
     'plugins.security.check_snapshot_restore_write_privileges'     => true,
     'plugins.security.disabled'                                    => false,
     'plugins.security.enable_snapshot_restore_privilege'           => true,
-    'plugins.security.restapi.roles_enabled'                       => [
-      'all_access',
-      'security_rest_api_access',
+    'plugins.security.restapi.roles_enabled'                       => %w[
+      all_access
+      security_rest_api_access
     ],
     'plugins.security.ssl.http.enabled'                            => true,
     'plugins.security.ssl.http.pemcert_filepath'                   => 'esnode.pem',
@@ -67,4 +67,42 @@ class opensearch::params (
       '.replication-metadata-store',
     ],
   }
-}
+  {
+    ##
+    ## version
+    ##
+    'version'                   => '2.5.0',
+
+    ##
+    ## package values
+    ##
+    'manage_package'            => true,
+    'package_install_method'    => 'package',
+    'package_ensure'            => 'present',
+    'package_architecture'      => package_architecture,
+    'package_provider'          => package_provider,
+    'package_directory'         => '/opt/opensearch',
+
+    ##
+    ## opensearch settings
+    ##
+    'manage_config'             => true,
+    'use_default_settings'      => true,
+    'default_settings'          => default_settings,
+    'settings'                  => {},
+
+    ##
+    ## java settings
+    ##
+    'heap_size'                 => '512m',
+
+    ##
+    ## service values
+    ##
+    'manage_service'            => true,
+    'service_ensure'            => 'running',
+    'service_enable'            => true,
+    'restart_on_config_change'  => true,
+    'restart_on_package_change' => true,
+  }
+end

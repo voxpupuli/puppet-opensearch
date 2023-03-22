@@ -4,10 +4,10 @@
 # @api private
 #
 class opensearch::install::package (
-  $version      = $opensearch::version,
-  $ensure       = $opensearch::package_ensure,
   $architecture = $opensearch::package_architecture,
+  $ensure       = $opensearch::package_ensure,
   $provider     = $opensearch::package_provider,
+  $version      = $opensearch::version,
 ) {
   assert_private()
 

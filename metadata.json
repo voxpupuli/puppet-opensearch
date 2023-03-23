@@ -1,14 +1,23 @@
 {
   "name": "puppet-opensearch",
-  "version": "0.1.0",
+  "version": "0.1.1-rc0",
   "author": "Vox Pupuli",
   "summary": "",
   "license": "Apache-2.0",
   "source": "",
   "dependencies": [
-    { "name": "puppet/archive", "version_requirement": ">= 2.0.0 < 7.0.0" },
-    { "name": "puppetlabs/stdlib", "version_requirement": ">= 4.13.1 < 9.0.0" },
-    { "name": "puppet/systemd", "version_requirement": ">= 2.10.0 < 5.0.0" }
+    {
+      "name": "puppet/archive",
+      "version_requirement": ">= 2.0.0 < 7.0.0"
+    },
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.13.1 < 9.0.0"
+    },
+    {
+      "name": "puppet/systemd",
+      "version_requirement": ">= 2.10.0 < 5.0.0"
+    }
   ],
   "operatingsystem_support": [
     {

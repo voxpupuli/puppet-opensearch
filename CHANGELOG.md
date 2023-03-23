@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v0.1.1](https://github.com/voxpupuli/puppet-opensearch/tree/v0.1.1) (2023-03-23)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-opensearch/compare/v0.1.0...v0.1.1)
+
+**Implemented enhancements:**
+
+- cleanup metadata.json; add missing source key [\#9](https://github.com/voxpupuli/puppet-opensearch/pull/9) ([crazymind1337](https://github.com/crazymind1337))
+
 ## [v0.1.0](https://github.com/voxpupuli/puppet-opensearch/tree/v0.1.0) (2023-03-23)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-opensearch/compare/e63db5e765ce5eeb6b5f71a833dee62028ece54f...v0.1.0)

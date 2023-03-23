@@ -2,9 +2,9 @@
   "name": "puppet-opensearch",
   "version": "0.1.1-rc0",
   "author": "Vox Pupuli",
-  "summary": "",
+  "summary": "Puppet Module to setup opensearch",
   "license": "Apache-2.0",
-  "source": "",
+  "source": "https://github.com/voxpupuli/puppet-opensearch",
   "dependencies": [
     {
       "name": "puppet/archive",
@@ -23,25 +23,9 @@
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
-        "7"
-      ]
-    },
-    {
-      "operatingsystem": "OracleLinux",
-      "operatingsystemrelease": [
-        "7"
-      ]
-    },
-    {
-      "operatingsystem": "RedHat",
-      "operatingsystemrelease": [
-        "8"
-      ]
-    },
-    {
-      "operatingsystem": "Scientific",
-      "operatingsystemrelease": [
-        "7"
+        "7",
+        "8",
+        "9"
       ]
     },
     {

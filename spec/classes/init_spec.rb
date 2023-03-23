@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-require 'helper'
-require 'shared_examples'
 require 'spec_helper'
-require 'tests'
+require 'spec_helper_local'
 
 describe 'opensearch' do
   on_supported_os.each do |os, facts|

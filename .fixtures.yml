@@ -1,7 +1,7 @@
 ---
 fixtures:
-  forge_modules:
-    archive: 'puppet-archive'
-    stdlib: 'puppetlabs-stdlib'
-    systemd: 'puppet-systemd'
-    yumrepo: 'puppetlabs-yumrepo_core'
+  repositories:
+    archive: https://github.com/voxpupuli/puppet-archive
+    stdlib: https://github.com/puppetlabs/puppetlabs-stdlib
+    systemd: https://github.com/voxpupuli/puppet-systemd
+    yumrepo: https://github.com/puppetlabs/puppetlabs-yumrepo_core

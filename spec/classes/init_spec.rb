@@ -24,7 +24,7 @@ describe 'opensearch' do
           ##
           ## failures need to be handled here - they dont work in shared_examples
           ##
-          if parameter['package_install_method'] == 'repository' && facts[:os]['family'] != 'RedHat'
+          if parameter['package_install_method'] == 'repository' && facts[:os]['family'] != 'RedHat' && facts[:os]['family'] != 'Debian'
             it {
               is_expected.to compile.and_raise_error(%r{not supported to use a repository for installing opensearch})
             }

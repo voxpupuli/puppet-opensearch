@@ -11,6 +11,9 @@ class opensearch::install::repository (
     'RedHat': {
       contain opensearch::install::repository::redhat
     }
+    'Debian': {
+      contain opensearch::install::repository::debian
+    }
     default: {
       fail("Your OS ${facts['os']['family']} (${facts['os']['name']}) is not supported to use a repository for installing opensearch!")
     }

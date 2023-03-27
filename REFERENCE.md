@@ -18,6 +18,7 @@
 * `opensearch::install::archive`: Install opensearch via tarball.
 * `opensearch::install::package`: Install opensearch via deb/rpm package.
 * `opensearch::install::repository`: Handle opensearch repository.
+* `opensearch::install::repository::debian`: Install debian repository and package.
 * `opensearch::install::repository::redhat`: Install yum repository and package.
 * `opensearch::service`: Handle opensearch service.
 

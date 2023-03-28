@@ -3,26 +3,21 @@
 #
 # @api private
 #
-class opensearch::install::archive (
-  $architecture = $opensearch::package_architecture,
-  $directory    = $opensearch::package_directory,
-  $ensure       = $opensearch::package_ensure,
-  $version      = $opensearch::version,
-) {
+class opensearch::install::archive {
   assert_private()
 
-  $file = "opensearch-${version}-linux-${architecture}.tar.gz"
+  $file = "opensearch-${opensearch::version}-linux-${opensearch::package_architecture}.tar.gz"
 
   user { 'opensearch':
-    ensure     => $ensure,
-    home       => $directory,
+    ensure     => $opensearch::package_ensure,
+    home       => $opensearch::package_directory,
     managehome => false,
     system     => true,
     shell      => '/bin/false',
   }
 
-  if $ensure == 'present' {
-    file { $directory:
+  if $opensearch::package_ensure == 'present' {
+    file { $opensearch::package_directory:
       ensure => 'directory',
       owner  => 'opensearch',
       group  => 'opensearch',
@@ -44,29 +39,29 @@ class opensearch::install::archive (
       provider        => 'wget',
       path            => "/tmp/${file}",
       extract         => true,
-      extract_path    => $directory,
-      extract_command => "tar -xvzf /tmp/${file} --wildcards opensearch-${version}/* -C ${directory}",
+      extract_path    => $opensearch::package_directory,
+      extract_command => "tar -xvzf /tmp/${file} --wildcards opensearch-${opensearch::version}/* -C ${opensearch::package_directory}",
       user            => 'opensearch',
       group           => 'opensearch',
-      creates         => "${directory}/bin",
+      creates         => "${opensearch::package_directory}/bin",
       cleanup         => true,
-      source          => "https://artifacts.opensearch.org/releases/bundle/opensearch/${version}/${file}",
+      source          => "https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearch::version}/${file}",
     }
   } else {
-    file { $directory:
-      ensure  => $ensure,
+    file { $opensearch::package_directory:
+      ensure  => $opensearch::package_ensure,
       revsere => true,
       force   => true,
     }
 
     file { '/var/lib/opensearch':
-      ensure  => $ensure,
+      ensure  => $opensearch::package_ensure,
       revsere => true,
       force   => true,
     }
 
     file { '/var/log/opensearch':
-      ensure  => $ensure,
+      ensure  => $opensearch::package_ensure,
       revsere => true,
       force   => true,
     }

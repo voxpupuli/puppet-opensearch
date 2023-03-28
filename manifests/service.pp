@@ -3,8 +3,7 @@
 #
 # @api private
 #
-class opensearch::service (
-) {
+class opensearch::service {
   assert_private()
 
   if $opensearch::manage_service {

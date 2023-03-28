@@ -3,29 +3,24 @@
 #
 # @api private
 #
-class opensearch::install::package (
-  $architecture = $opensearch::package_architecture,
-  $ensure       = $opensearch::package_ensure,
-  $provider     = $opensearch::package_provider,
-  $version      = $opensearch::version,
-) {
+class opensearch::install::package {
   assert_private()
 
-  $file = $provider ? {
-    'dpkg' => "opensearch-${version}-linux-${architecture}.deb",
-    'rpm'  => "opensearch-${version}-linux-${architecture}.rpm",
+  $file = $opensearch::package_provider ? {
+    'dpkg' => "opensearch-${opensearch::version}-linux-${opensearch::package_architecture}.deb",
+    'rpm'  => "opensearch-${opensearch::version}-linux-${opensearch::package_architecture}.rpm",
   }
 
   archive { "/tmp/${file}":
     provider => 'wget',
     extract  => false,
     cleanup  => true,
-    source   => "https://artifacts.opensearch.org/releases/bundle/opensearch/${version}/${file}",
+    source   => "https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearch::version}/${file}",
   }
 
   package { 'opensearch':
-    ensure   => $ensure,
-    provider => $provider,
+    ensure   => $opensearch::package_ensure,
+    provider => $opensearch::package_provider,
     source   => "/tmp/${file}",
   }
 }

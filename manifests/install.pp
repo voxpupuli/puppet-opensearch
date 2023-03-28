@@ -3,8 +3,7 @@
 #
 # @api private
 #
-class opensearch::install (
-) {
+class opensearch::install {
   assert_private()
 
   if $opensearch::manage_package {

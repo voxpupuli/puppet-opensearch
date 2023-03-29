@@ -5,17 +5,13 @@ shared_examples 'install_archive' do |parameter, _facts|
     is_expected.to contain_class('opensearch::install::archive')
   }
 
-  architecture = parameter['package_architecture']
-  directory    = parameter['package_directory']
-  ensure_value = parameter['package_ensure']
-  version      = parameter['version']
-  file         = "opensearch-#{version}-linux-#{architecture}.tar.gz"
+  file = "opensearch-#{parameter['version']}-linux-#{parameter['package_architecture']}.tar.gz"
 
   it {
     is_expected.to contain_user('opensearch').with(
       {
-        'ensure'     => ensure_value,
-        'home'       => directory,
+        'ensure'     => parameter['package_ensure'],
+        'home'       => parameter['package_directory'],
         'managehome' => false,
         'system'     => true,
         'shell'      => '/bin/false',
@@ -23,9 +19,9 @@ shared_examples 'install_archive' do |parameter, _facts|
     )
   }
 
-  if ensure_value == 'present'
+  if parameter['package_ensure'] == 'present'
     it {
-      is_expected.to contain_file(directory).with(
+      is_expected.to contain_file(parameter['package_directory']).with(
         {
           'ensure' => 'directory',
           'owner'  => 'opensearch',
@@ -60,21 +56,21 @@ shared_examples 'install_archive' do |parameter, _facts|
           'provider'        => 'wget',
           'path'            => "/tmp/#{file}",
           'extract'         => true,
-          'extract_path'    => directory,
-          'extract_command' => "tar -xvzf /tmp/#{file} --wildcards opensearch-#{version}/* -C #{directory}",
+          'extract_path'    => parameter['package_directory'],
+          'extract_command' => "tar -xvzf /tmp/#{file} --wildcards opensearch-#{parameter['version']}/* -C #{parameter['package_directory']}",
           'user'            => 'opensearch',
           'group'           => 'opensearch',
-          'creates'         => "#{directory}/bin",
+          'creates'         => "#{parameter['package_directory']}/bin",
           'cleanup'         => true,
-          'source'          => "https://artifacts.opensearch.org/releases/bundle/opensearch/#{version}/#{file}",
+          'source'          => "https://artifacts.opensearch.org/releases/bundle/opensearch/#{parameter['version']}/#{file}",
         }
       )
     }
   else
     it {
-      is_expected.to contain_file(directory).with(
+      is_expected.to contain_file(parameter['package_directory']).with(
         {
-          'ensure'  => ensure_value,
+          'ensure'  => parameter['package_ensure'],
           'revsere' => true,
           'force'   => true,
         }
@@ -84,7 +80,7 @@ shared_examples 'install_archive' do |parameter, _facts|
     it {
       is_expected.to contain_file('/var/lib/opensearch').with(
         {
-          'ensure'  => ensure_value,
+          'ensure'  => parameter['package_ensure'],
           'revsere' => true,
           'force'   => true,
         }
@@ -94,7 +90,7 @@ shared_examples 'install_archive' do |parameter, _facts|
     it {
       is_expected.to contain_file('/var/log/opensearch').with(
         {
-          'ensure'  => ensure_value,
+          'ensure'  => parameter['package_ensure'],
           'revsere' => true,
           'force'   => true,
         }

@@ -3,13 +3,11 @@
 #
 # @api private
 #
-class opensearch::install::repository::redhat (
-  $ensure = $opensearch::package_ensure,
-) {
+class opensearch::install::repository::redhat {
   assert_private()
 
   yumrepo { 'OpenSearch 2.x':
-    ensure        => $ensure,
+    ensure        => $opensearch::package_ensure,
     baseurl       => 'https://artifacts.opensearch.org/releases/bundle/opensearch/2.x/yum',
     repo_gpgcheck => '1',
     gpgcheck      => '1',
@@ -17,7 +15,7 @@ class opensearch::install::repository::redhat (
   }
 
   package { 'opensearch':
-    ensure => $ensure,
+    ensure => $opensearch::package_ensure,
   }
 
   Yumrepo['OpenSearch 2.x'] -> Package['opensearch']

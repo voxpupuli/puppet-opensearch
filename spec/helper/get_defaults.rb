@@ -67,6 +67,7 @@ def get_defaults(facts)
       '.replication-metadata-store',
     ],
   }
+
   {
     ##
     ## version

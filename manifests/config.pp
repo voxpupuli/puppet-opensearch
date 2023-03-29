@@ -3,19 +3,7 @@
 #
 # @api private
 #
-class opensearch::config (
-  ##
-  ## opensearch settings
-  ##
-  $default_settings     = $opensearch::default_settings,
-  $settings             = $opensearch::settings,
-  $use_default_settings = $opensearch::use_default_settings,
-
-  ##
-  ## java settings
-  ##
-  $heap_size            = $opensearch::heap_size,
-) {
+class opensearch::config {
   assert_private()
 
   if $opensearch::manage_config {
@@ -24,9 +12,9 @@ class opensearch::config (
       default   => '/etc/opensearch',
     }
 
-    $data = $use_default_settings ? {
-      true  => merge($default_settings, $settings),
-      false => $settings,
+    $settings = $opensearch::use_default_settings ? {
+      true  => merge($opensearch::default_settings, $opensearch::settings),
+      false => $opensearch::settings,
     }
 
     file { "${config_directory}/opensearch.yml":
@@ -34,7 +22,7 @@ class opensearch::config (
       owner   => 'opensearch',
       group   => 'opensearch',
       mode    => '0640',
-      content => $data.to_yaml,
+      content => $settings.to_yaml,
     }
 
     file { "${config_directory}/jvm.options":
@@ -42,11 +30,7 @@ class opensearch::config (
       owner   => 'opensearch',
       group   => 'opensearch',
       mode    => '0640',
-      content => epp("${module_name}/jvm.options.epp",
-        {
-          heap_size  => $heap_size,
-        }
-      ),
+      content => epp("${module_name}/jvm.options.epp"),
     }
   }
 }

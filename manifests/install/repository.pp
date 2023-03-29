@@ -3,8 +3,7 @@
 #
 # @api private
 #
-class opensearch::install::repository (
-) {
+class opensearch::install::repository {
   assert_private()
 
   case $facts['os']['family'] {

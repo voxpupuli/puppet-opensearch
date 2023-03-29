@@ -3,15 +3,13 @@
 #
 # @api private
 #
-class opensearch::install::repository::debian (
-  $ensure = $opensearch::package_ensure,
-) {
+class opensearch::install::repository::debian {
   assert_private()
 
   include apt
 
   archive { '/tmp/opensearch.pgp':
-    ensure          => $ensure,
+    ensure          => $opensearch::package_ensure,
     source          => 'https://artifacts.opensearch.org/publickeys/opensearch.pgp',
     extract         => true,
     extract_path    => '/usr/share/keyrings',
@@ -20,7 +18,7 @@ class opensearch::install::repository::debian (
   }
 
   apt::source { 'opensearch':
-    ensure   => $ensure,
+    ensure   => $opensearch::package_ensure,
     location => 'https://artifacts.opensearch.org/releases/bundle/opensearch/2.x/apt',
     release  => 'stable',
     repos    => 'main',
@@ -28,7 +26,7 @@ class opensearch::install::repository::debian (
   }
 
   package { 'opensearch':
-    ensure => $ensure,
+    ensure => $opensearch::package_ensure,
   }
 
   Archive['/tmp/opensearch.pgp'] -> Apt::Source['opensearch'] ~> Class['apt::update'] -> Package['opensearch']

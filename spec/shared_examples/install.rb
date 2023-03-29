@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-shared_examples 'install' do |parameter, facts|
+shared_examples 'install' do |parameter|
   it {
     is_expected.to contain_class('opensearch::install').that_comes_before('Class[opensearch::config]')
   }
@@ -11,5 +11,11 @@ shared_examples 'install' do |parameter, facts|
     }
   end
 
-  include_examples "install_#{parameter['package_install_method']}", parameter, facts if parameter['manage_package']
+  if parameter['manage_package']
+    if parameter['package_source'] == 'archive'
+      include_examples 'install_archive', parameter
+    else
+      include_examples 'install_package', parameter
+    end
+  end
 end

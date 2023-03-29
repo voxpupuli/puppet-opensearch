@@ -48,6 +48,7 @@ describe 'opensearch' do
             include_examples 'config', parameter, facts
             include_examples 'install', parameter, facts
             include_examples 'service', parameter, facts
+            include_examples 'repository', parameter, facts if parameter['manage_repository']
           end
         end
       end

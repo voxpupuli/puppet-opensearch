@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-shared_examples 'install_archive' do |parameter, _facts|
+shared_examples 'install_archive' do |parameter|
   it {
     is_expected.to contain_class('opensearch::install::archive')
   }

@@ -3,15 +3,15 @@
 #
 # @api private
 #
-class opensearch::install::repository {
+class opensearch::repository {
   assert_private()
 
   case $facts['os']['family'] {
     'RedHat': {
-      contain opensearch::install::repository::redhat
+      contain opensearch::repository::redhat
     }
     'Debian': {
-      contain opensearch::install::repository::debian
+      contain opensearch::repository::debian
     }
     default: {
       fail("Your OS ${facts['os']['family']} (${facts['os']['name']}) is not supported to use a repository for installing opensearch!")

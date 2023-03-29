@@ -7,7 +7,7 @@ class opensearch::config {
   assert_private()
 
   if $opensearch::manage_config {
-    $config_directory = $opensearch::package_install_method ? {
+    $config_directory = $opensearch::package_source ? {
       'archive' => "${opensearch::package_directory}/config",
       default   => '/etc/opensearch',
     }

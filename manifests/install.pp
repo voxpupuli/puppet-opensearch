@@ -7,6 +7,10 @@ class opensearch::install {
   assert_private()
 
   if $opensearch::manage_package {
-    contain "opensearch::install::${opensearch::package_install_method}"
+    if $opensearch::package_source == 'archive' {
+      contain opensearch::install::archive
+    } else {
+      contain opensearch::install::package
+    }
   }
 }

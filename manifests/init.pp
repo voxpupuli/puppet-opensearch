@@ -6,8 +6,8 @@
 #
 # @param manage_package
 #   Whether to manage the package installation-
-# @param package_install_method
-#   The installation method for the package.
+# @param package_source
+#   The source for the package.
 # @param package_ensure
 #   The status of the package.
 # @param package_architecture
@@ -44,42 +44,56 @@ class opensearch (
   ##
   ## version
   ##
-  String                                   $version                   = '2.5.0',
+  Optional[String]                          $version                   = undef,
 
   ##
   ## package values
   ##
-  Boolean                                  $manage_package            = true,
-  Enum['archive', 'package', 'repository'] $package_install_method    = 'package',
-  Enum['present', 'absent']                $package_ensure            = 'present',
-  Enum['x64', 'arm64']                     $package_architecture      = $opensearch::params::package_architecture,
-  Enum['dpkg', 'rpm']                      $package_provider          = $opensearch::params::package_provider,
-  Stdlib::Absolutepath                     $package_directory         = '/opt/opensearch',
+  Boolean                                   $manage_package            = true,
+  Enum['x64', 'arm64']                      $package_architecture      = $opensearch::params::package_architecture,
+  Stdlib::Absolutepath                      $package_directory         = '/opt/opensearch',
+  Enum['present', 'absent']                 $package_ensure            = 'present',
+  Enum['dpkg', 'rpm']                       $package_provider          = $opensearch::params::package_provider,
+  Enum['archive', 'download', 'repository'] $package_source            = 'repository',
+
+  ##
+  ## repository
+  ##
+  Boolean                                   $manage_repository         = true,
+  Enum['present', 'absent']                 $repository_ensure         = 'present',
+  Optional[Stdlib::HTTPUrl]                 $repository_location       = undef,
+  Stdlib::HTTPUrl                           $repository_gpg_key        = 'https://artifacts.opensearch.org/publickeys/opensearch.pgp',
 
   ##
   ## opensearch settings
   ##
-  Boolean                                  $manage_config             = true,
-  Boolean                                  $use_default_settings      = true,
-  Hash                                     $default_settings          = $opensearch::params::default_settings,
-  Hash                                     $settings                  = {},
+  Boolean                                   $manage_config             = true,
+  Boolean                                   $use_default_settings      = true,
+  Hash                                      $default_settings          = $opensearch::params::default_settings,
+  Hash                                      $settings                  = {},
 
   ##
   ## java settings
   ##
-  Pattern[/\d+[mg]/]                       $heap_size                 = '512m',
+  Pattern[/\d+[mg]/]                        $heap_size                 = '512m',
 
   ##
   ## service values
   ##
-  Boolean                                  $manage_service            = true,
-  Enum['running', 'stopped']               $service_ensure            = 'running',
-  Boolean                                  $service_enable            = true,
-  Boolean                                  $restart_on_config_change  = true,
-  Boolean                                  $restart_on_package_change = true,
+  Boolean                                   $manage_service            = true,
+  Stdlib::Ensure::Service                   $service_ensure            = 'running',
+  Boolean                                   $service_enable            = true,
+  Boolean                                   $restart_on_config_change  = true,
+  Boolean                                   $restart_on_package_change = true,
 ) inherits opensearch::params {
-  contain opensearch::config
+  if $manage_repository {
+    contain opensearch::repository
+
+    Class['opensearch::repository'] -> Class['opensearch::install']
+  }
+
   contain opensearch::install
+  contain opensearch::config
   contain opensearch::service
 
   Class['opensearch::install'] -> Class['opensearch::config'] -> Class['opensearch::service']

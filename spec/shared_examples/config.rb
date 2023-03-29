@@ -12,29 +12,18 @@ shared_examples 'config' do |parameter, _facts|
   end
 
   if parameter['manage_config']
-    ##
-    ## opensearch settings
-    ##
-    default_settings     = parameter['default_settings']
-    settings             = parameter['settings']
-    use_default_settings = parameter['use_default_settings']
+    config_directory = case parameter['package_install_method']
+                       when 'archive'
+                         "#{parameter['package_directory']}/config"
+                       else
+                         '/etc/opensearch'
+                       end
 
-    ##
-    ## java settings
-    ##
-    heap_size            = parameter['heap_size']
-    config_directory     = case parameter['package_install_method']
-                           when 'archive'
-                             "#{parameter['package_directory']}/config"
-                           else
-                             '/etc/opensearch'
-                           end
-
-    data = if use_default_settings
-             default_settings.merge(settings)
-           else
-             settings
-           end
+    settings = if parameter['use_default_settings']
+                 parameter['default_settings'].merge(parameter['settings'])
+               else
+                 parameter['settings']
+               end
 
     require 'yaml'
 
@@ -45,7 +34,7 @@ shared_examples 'config' do |parameter, _facts|
           'owner'   => 'opensearch',
           'group'   => 'opensearch',
           'mode'    => '0640',
-          'content' => data.to_yaml,
+          'content' => settings.to_yaml,
         }
       )
     }
@@ -57,7 +46,7 @@ shared_examples 'config' do |parameter, _facts|
           'owner'   => 'opensearch',
           'group'   => 'opensearch',
           'mode'    => '0640',
-          'content' => %r{-Xms#{heap_size}},
+          'content' => %r{-Xms#{parameter['heap_size']}},
         }
       )
     }

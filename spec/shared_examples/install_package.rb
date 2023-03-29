@@ -5,16 +5,11 @@ shared_examples 'install_package' do |parameter, _facts|
     is_expected.to contain_class('opensearch::install::package')
   }
 
-  architecture = parameter['package_architecture']
-  ensure_value = parameter['package_ensure']
-  provider     = parameter['package_provider']
-  version      = parameter['version']
-
-  file = case provider
+  file = case parameter['package_provider']
          when 'dpkg'
-           "opensearch-#{version}-linux-#{architecture}.deb"
+           "opensearch-#{parameter['version']}-linux-#{parameter['package_architecture']}.deb"
          when 'rpm'
-           "opensearch-#{version}-linux-#{architecture}.rpm"
+           "opensearch-#{parameter['version']}-linux-#{parameter['package_architecture']}.rpm"
          end
 
   it {
@@ -23,7 +18,7 @@ shared_examples 'install_package' do |parameter, _facts|
         'provider' => 'wget',
         'extract'  => false,
         'cleanup'  => true,
-        'source'   => "https://artifacts.opensearch.org/releases/bundle/opensearch/#{version}/#{file}",
+        'source'   => "https://artifacts.opensearch.org/releases/bundle/opensearch/#{parameter['version']}/#{file}",
       }
     )
   }
@@ -31,8 +26,8 @@ shared_examples 'install_package' do |parameter, _facts|
   it {
     is_expected.to contain_package('opensearch').with(
       {
-        'ensure'   => ensure_value,
-        'provider' => provider,
+        'ensure'   => parameter['package_ensure'],
+        'provider' => parameter['package_provider'],
         'source'   => "/tmp/#{file}",
       }
     )

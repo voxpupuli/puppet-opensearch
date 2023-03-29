@@ -30,11 +30,7 @@ class opensearch::config {
       owner   => 'opensearch',
       group   => 'opensearch',
       mode    => '0640',
-      content => epp("${module_name}/jvm.options.epp",
-        {
-          heap_size  => $opensearch::heap_size,
-        }
-      ),
+      content => epp("${module_name}/jvm.options.epp"),
     }
   }
 }

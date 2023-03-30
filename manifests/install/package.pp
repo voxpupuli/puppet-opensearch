@@ -31,6 +31,10 @@ class opensearch::install::package {
     $ensure   = pick($opensearch::version, $opensearch::package_ensure)
     $provider = undef
     $source   = undef
+
+    if $opensearch::manage_repository {
+      contain opensearch::repository
+    }
   }
 
   package { 'opensearch':

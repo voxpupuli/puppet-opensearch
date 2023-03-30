@@ -39,6 +39,6 @@ shared_examples 'repository_debian' do |parameter|
         'repos'    => 'main',
         'keyring'  => '/usr/share/keyrings/opensearch.keyring.gpg',
       }
-    ).that_notifies('Class[apt::update]')
+    ).that_notifies('Exec[apt_update]')
   }
 end

@@ -6,7 +6,7 @@ shared_examples 'service' do |parameter, _facts|
   }
 
   if parameter['manage_service']
-    if parameter['package_install_method'] == 'archive'
+    if parameter['package_source'] == 'archive'
       it {
         is_expected.to contain_systemd__unit_file('opensearch.service').with(
           {

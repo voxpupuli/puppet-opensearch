@@ -6,6 +6,10 @@
 class opensearch::install::archive {
   assert_private()
 
+  if $opensearch::version =~ Undef {
+    fail("Using 'opensearch::package_source: archive' requires to set a version via 'opensearch::version: <version>'!")
+  }
+
   $file = "opensearch-${opensearch::version}-linux-${opensearch::package_architecture}.tar.gz"
 
   user { 'opensearch':

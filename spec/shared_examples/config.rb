@@ -12,7 +12,7 @@ shared_examples 'config' do |parameter, _facts|
   end
 
   if parameter['manage_config']
-    config_directory = case parameter['package_install_method']
+    config_directory = case parameter['package_source']
                        when 'archive'
                          "#{parameter['package_directory']}/config"
                        else

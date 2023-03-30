@@ -7,7 +7,7 @@ class opensearch::service {
   assert_private()
 
   if $opensearch::manage_service {
-    if $opensearch::package_install_method == 'archive' {
+    if $opensearch::package_source == 'archive' {
       systemd::unit_file { 'opensearch.service':
         ensure => 'present',
         source => "puppet:///modules/${module_name}/opensearch.service",

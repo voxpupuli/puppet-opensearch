@@ -17,9 +17,9 @@
 * `opensearch::install`: Installs opensearch via archive, package, or repository.
 * `opensearch::install::archive`: Install opensearch via tarball.
 * `opensearch::install::package`: Install opensearch via deb/rpm package.
-* `opensearch::install::repository`: Handle opensearch repository.
-* `opensearch::install::repository::debian`: Install debian repository and package.
-* `opensearch::install::repository::redhat`: Install yum repository and package.
+* `opensearch::repository`: Handle opensearch repository.
+* `opensearch::repository::debian`: Install the Debian apt repository for opensearch.
+* `opensearch::repository::redhat`: Install the RedHat yum repository for opensearch.
 * `opensearch::service`: Handle opensearch service.
 
 ## Classes
@@ -34,7 +34,7 @@ The following parameters are available in the `opensearch` class:
 
 * [`version`](#-opensearch--version)
 * [`manage_package`](#-opensearch--manage_package)
-* [`package_install_method`](#-opensearch--package_install_method)
+* [`package_source`](#-opensearch--package_source)
 * [`package_ensure`](#-opensearch--package_ensure)
 * [`package_architecture`](#-opensearch--package_architecture)
 * [`package_provider`](#-opensearch--package_provider)
@@ -49,14 +49,18 @@ The following parameters are available in the `opensearch` class:
 * [`service_enable`](#-opensearch--service_enable)
 * [`restart_on_config_change`](#-opensearch--restart_on_config_change)
 * [`restart_on_package_change`](#-opensearch--restart_on_package_change)
+* [`manage_repository`](#-opensearch--manage_repository)
+* [`repository_ensure`](#-opensearch--repository_ensure)
+* [`repository_location`](#-opensearch--repository_location)
+* [`repository_gpg_key`](#-opensearch--repository_gpg_key)
 
 ##### <a name="-opensearch--version"></a>`version`
 
-Data type: `String`
+Data type: `Optional[String]`
 
 The version to be installed. See also: https://opensearch.org/downloads.html
 
-Default value: `'2.5.0'`
+Default value: `undef`
 
 ##### <a name="-opensearch--manage_package"></a>`manage_package`
 
@@ -66,13 +70,13 @@ Whether to manage the package installation-
 
 Default value: `true`
 
-##### <a name="-opensearch--package_install_method"></a>`package_install_method`
+##### <a name="-opensearch--package_source"></a>`package_source`
 
-Data type: `Enum['archive', 'package', 'repository']`
+Data type: `Enum['archive', 'download', 'repository']`
 
-The installation method for the package.
+The source for the package.
 
-Default value: `'package'`
+Default value: `'repository'`
 
 ##### <a name="-opensearch--package_ensure"></a>`package_ensure`
 
@@ -156,7 +160,7 @@ Default value: `true`
 
 ##### <a name="-opensearch--service_ensure"></a>`service_ensure`
 
-Data type: `Enum['running', 'stopped']`
+Data type: `Stdlib::Ensure::Service`
 
 The state for the opensearch service.
 
@@ -185,6 +189,38 @@ Data type: `Boolean`
 Restart the service on package changes
 
 Default value: `true`
+
+##### <a name="-opensearch--manage_repository"></a>`manage_repository`
+
+Data type: `Boolean`
+
+
+
+Default value: `true`
+
+##### <a name="-opensearch--repository_ensure"></a>`repository_ensure`
+
+Data type: `Enum['present', 'absent']`
+
+
+
+Default value: `'present'`
+
+##### <a name="-opensearch--repository_location"></a>`repository_location`
+
+Data type: `Optional[Stdlib::HTTPUrl]`
+
+
+
+Default value: `undef`
+
+##### <a name="-opensearch--repository_gpg_key"></a>`repository_gpg_key`
+
+Data type: `Stdlib::HTTPUrl`
+
+
+
+Default value: `'https://artifacts.opensearch.org/publickeys/opensearch.pgp'`
 
 ### <a name="opensearch--params"></a>`opensearch::params`
 

@@ -72,17 +72,25 @@ def get_defaults(facts)
     ##
     ## version
     ##
-    'version'                   => '2.5.0',
+    'version'                   => :undef,
 
     ##
     ## package values
     ##
     'manage_package'            => true,
-    'package_install_method'    => 'package',
-    'package_ensure'            => 'present',
     'package_architecture'      => package_architecture,
-    'package_provider'          => package_provider,
     'package_directory'         => '/opt/opensearch',
+    'package_ensure'            => 'present',
+    'package_provider'          => package_provider,
+    'package_source'            => 'repository',
+
+    ##
+    ## repository
+    ##
+    'manage_repository'         => true,
+    'repository_ensure'         => 'present',
+    'repository_location'       => :undef,
+    'repository_gpg_key'        => 'https://artifacts.opensearch.org/publickeys/opensearch.pgp',
 
     ##
     ## opensearch settings

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-shared_examples 'install_package' do |parameter|
+shared_examples 'install_package' do |parameter, facts|
   it {
     is_expected.to contain_class('opensearch::install::package')
   }
@@ -36,6 +36,8 @@ shared_examples 'install_package' do |parameter|
                    end
     provider = nil
     source = nil
+
+    include_examples 'repository', parameter, facts if parameter['manage_repository']
   end
 
   it {

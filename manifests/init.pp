@@ -86,12 +86,6 @@ class opensearch (
   Boolean                                   $restart_on_config_change  = true,
   Boolean                                   $restart_on_package_change = true,
 ) inherits opensearch::params {
-  if $manage_repository {
-    contain opensearch::repository
-
-    Class['opensearch::repository'] -> Class['opensearch::install']
-  }
-
   contain opensearch::install
   contain opensearch::config
   contain opensearch::service

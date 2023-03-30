@@ -30,5 +30,9 @@ class opensearch::repository::debian {
 
   include apt
 
-  Apt::Source['opensearch'] ~> Class['apt::update']
+  if $opensearch::manage_package {
+    Apt::Source['opensearch'] ~> Exec['apt_update'] -> Package['opensearch']
+  } else {
+    Apt::Source['opensearch'] ~> Exec['apt_update']
+  }
 }

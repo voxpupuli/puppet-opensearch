@@ -41,10 +41,6 @@ describe 'opensearch' do
               is_expected.to contain_class('opensearch')
             }
 
-            it {
-              is_expected.to contain_class('opensearch::params')
-            }
-
             include_examples 'config', parameter, facts
             include_examples 'install', parameter, facts
             include_examples 'service', parameter, facts

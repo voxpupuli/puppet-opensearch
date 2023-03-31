@@ -9,7 +9,6 @@
 #### Public Classes
 
 * [`opensearch`](#opensearch): Module to manage opensearch.
-* [`opensearch::params`](#opensearch--params): Default values.
 
 #### Private Classes
 
@@ -92,15 +91,11 @@ Data type: `Enum['x64', 'arm64']`
 
 The architecture for the package.
 
-Default value: `$opensearch::params::package_architecture`
-
 ##### <a name="-opensearch--package_provider"></a>`package_provider`
 
 Data type: `Enum['dpkg', 'rpm']`
 
 The provider for the package to be used to install the package.
-
-Default value: `$opensearch::params::package_provider`
 
 ##### <a name="-opensearch--package_directory"></a>`package_directory`
 
@@ -131,8 +126,6 @@ Default value: `true`
 Data type: `Hash`
 
 The modules default settings for opensearch.
-
-Default value: `$opensearch::params::default_settings`
 
 ##### <a name="-opensearch--settings"></a>`settings`
 
@@ -221,8 +214,4 @@ Data type: `Stdlib::HTTPUrl`
 
 
 Default value: `'https://artifacts.opensearch.org/publickeys/opensearch.pgp'`
-
-### <a name="opensearch--params"></a>`opensearch::params`
-
-Default values.
 

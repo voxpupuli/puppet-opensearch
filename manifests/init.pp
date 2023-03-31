@@ -41,6 +41,10 @@
 #   Restart the service on package changes
 #
 class opensearch (
+  Enum['x64', 'arm64']                      $package_architecture,
+  Enum['dpkg', 'rpm']                       $package_provider,
+  Hash                                      $default_settings,
+
   ##
   ## version
   ##
@@ -50,10 +54,8 @@ class opensearch (
   ## package values
   ##
   Boolean                                   $manage_package            = true,
-  Enum['x64', 'arm64']                      $package_architecture      = $opensearch::params::package_architecture,
   Stdlib::Absolutepath                      $package_directory         = '/opt/opensearch',
   Enum['present', 'absent']                 $package_ensure            = 'present',
-  Enum['dpkg', 'rpm']                       $package_provider          = $opensearch::params::package_provider,
   Enum['archive', 'download', 'repository'] $package_source            = 'repository',
 
   ##
@@ -69,7 +71,6 @@ class opensearch (
   ##
   Boolean                                   $manage_config             = true,
   Boolean                                   $use_default_settings      = true,
-  Hash                                      $default_settings          = $opensearch::params::default_settings,
   Hash                                      $settings                  = {},
 
   ##
@@ -85,7 +86,7 @@ class opensearch (
   Boolean                                   $service_enable            = true,
   Boolean                                   $restart_on_config_change  = true,
   Boolean                                   $restart_on_package_change = true,
-) inherits opensearch::params {
+) {
   contain opensearch::install
   contain opensearch::config
   contain opensearch::service

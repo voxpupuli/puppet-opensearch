@@ -83,6 +83,8 @@ def get_defaults(facts)
     'package_ensure'            => 'present',
     'package_provider'          => package_provider,
     'package_source'            => 'repository',
+    'pin_package'               => true,
+    'apt_pin_priority'          => 999,
 
     ##
     ## repository

@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v1.0.0](https://github.com/voxpupuli/puppet-opensearch/tree/v1.0.0) (2023-06-16)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-opensearch/compare/v0.3.0...v1.0.0)
+
+**Breaking changes:**
+
+- Require stdlib 9.x [\#32](https://github.com/voxpupuli/puppet-opensearch/pull/32) ([bastelfreak](https://github.com/bastelfreak))
+- Drop Puppet 6 [\#27](https://github.com/voxpupuli/puppet-opensearch/pull/27) ([smortex](https://github.com/smortex))
+
+**Implemented enhancements:**
+
+- If specific version specified, hold the package? [\#24](https://github.com/voxpupuli/puppet-opensearch/issues/24)
+- Add Puppet 8 support [\#31](https://github.com/voxpupuli/puppet-opensearch/pull/31) ([bastelfreak](https://github.com/bastelfreak))
+- Relax dependencies version requirements [\#29](https://github.com/voxpupuli/puppet-opensearch/pull/29) ([smortex](https://github.com/smortex))
+- Add package pinning/versionlock [\#25](https://github.com/voxpupuli/puppet-opensearch/pull/25) ([crazymind1337](https://github.com/crazymind1337))
+
+**Merged pull requests:**
+
+- purge pdk settings from metadata.json [\#30](https://github.com/voxpupuli/puppet-opensearch/pull/30) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v0.3.0](https://github.com/voxpupuli/puppet-opensearch/tree/v0.3.0) (2023-03-31)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-opensearch/compare/v0.2.0...v0.3.0)

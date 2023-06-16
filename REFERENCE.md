@@ -38,6 +38,8 @@ The following parameters are available in the `opensearch` class:
 * [`package_architecture`](#-opensearch--package_architecture)
 * [`package_provider`](#-opensearch--package_provider)
 * [`package_directory`](#-opensearch--package_directory)
+* [`pin_package`](#-opensearch--pin_package)
+* [`apt_pin_priority`](#-opensearch--apt_pin_priority)
 * [`manage_config`](#-opensearch--manage_config)
 * [`use_default_settings`](#-opensearch--use_default_settings)
 * [`default_settings`](#-opensearch--default_settings)
@@ -104,6 +106,22 @@ Data type: `Stdlib::Absolutepath`
 The directory to install the package. Only used for package_install_method = 'archive'.
 
 Default value: `'/opt/opensearch'`
+
+##### <a name="-opensearch--pin_package"></a>`pin_package`
+
+Data type: `Boolean`
+
+Whether to enable the `apt::pin` or `yum::versionlock` for the package
+
+Default value: `true`
+
+##### <a name="-opensearch--apt_pin_priority"></a>`apt_pin_priority`
+
+Data type: `Integer`
+
+The priority for apt::pin of the opensearch package
+
+Default value: `1001`
 
 ##### <a name="-opensearch--manage_config"></a>`manage_config`
 

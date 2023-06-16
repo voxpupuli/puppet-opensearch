@@ -35,6 +35,30 @@ class opensearch::install::package {
     if $opensearch::manage_repository {
       contain opensearch::repository
     }
+
+    if $opensearch::version !~ Undef and $opensearch::pin_package {
+      case $facts['os']['family'] {
+        'Debian': {
+          include apt
+
+          apt::pin { 'opensearch':
+            version  => $opensearch::version,
+            packages => 'opensearch',
+            priority => $opensearch::apt_pin_priority,
+          }
+        }
+        'RedHat': {
+          include yum
+
+          yum::versionlock { 'opensearch':
+            version => $opensearch::version,
+          }
+        }
+        default: {
+          fail('Package pinning is not available for your OS!')
+        }
+      }
+    }
   }
 
   package { 'opensearch':

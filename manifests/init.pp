@@ -16,6 +16,10 @@
 #   The provider for the package to be used to install the package.
 # @param package_directory
 #   The directory to install the package. Only used for package_install_method = 'archive'.
+# @param pin_package
+#   Whether to enable the `apt::pin` or `yum::versionlock` for the package
+# @param apt_pin_priority
+#   The priority for apt::pin of the opensearch package
 #
 # @param manage_config
 #   Whether to manage the configuration.
@@ -57,6 +61,8 @@ class opensearch (
   Stdlib::Absolutepath                      $package_directory         = '/opt/opensearch',
   Enum['present', 'absent']                 $package_ensure            = 'present',
   Enum['archive', 'download', 'repository'] $package_source            = 'repository',
+  Boolean                                   $pin_package               = true,
+  Integer                                   $apt_pin_priority          = 1001,
 
   ##
   ## repository

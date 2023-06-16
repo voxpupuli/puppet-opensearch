@@ -38,6 +38,29 @@ shared_examples 'install_package' do |parameter, facts|
     source = nil
 
     include_examples 'repository', parameter, facts if parameter['manage_repository']
+
+    if (parameter['version'] != :undef) && parameter['pin_package']
+      case facts[:os]['family']
+      when 'Debian'
+        it {
+          is_expected.to contain_apt__pin('opensearch').with(
+            {
+              'version'  => parameter['version'],
+              'packages' => 'opensearch',
+              'priority' => parameter['apt_pin_priority'],
+            }
+          )
+        }
+      when 'RedHat'
+        it {
+          is_expected.to contain_yum__versionlock('opensearch').with(
+            {
+              'version' => parameter['version'],
+            }
+          )
+        }
+      end
+    end
   end
 
   it {

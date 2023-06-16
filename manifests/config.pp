@@ -13,7 +13,7 @@ class opensearch::config {
     }
 
     $settings = $opensearch::use_default_settings ? {
-      true  => merge($opensearch::default_settings, $opensearch::settings),
+      true  => $opensearch::default_settings + $opensearch::settings,
       false => $opensearch::settings,
     }
 
@@ -22,7 +22,7 @@ class opensearch::config {
       owner   => 'opensearch',
       group   => 'opensearch',
       mode    => '0640',
-      content => $settings.to_yaml,
+      content => $settings.stdlib::to_yaml,
     }
 
     file { "${config_directory}/jvm.options":

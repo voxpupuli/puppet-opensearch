@@ -21,7 +21,7 @@ class opensearch::config {
       ensure  => file,
       owner   => 'opensearch',
       group   => 'opensearch',
-      mode    => '0640',
+      mode    => '0644',
       content => $settings.stdlib::to_yaml,
     }
 
@@ -29,7 +29,7 @@ class opensearch::config {
       ensure  => file,
       owner   => 'opensearch',
       group   => 'opensearch',
-      mode    => '0640',
+      mode    => '0644',
       content => epp("${module_name}/jvm.options.epp"),
     }
   }

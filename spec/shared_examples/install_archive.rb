@@ -71,7 +71,7 @@ shared_examples 'install_archive' do |parameter|
       is_expected.to contain_file(parameter['package_directory']).with(
         {
           'ensure'  => parameter['package_ensure'],
-          'revsere' => true,
+          'recurse' => true,
           'force'   => true,
         }
       )
@@ -81,7 +81,7 @@ shared_examples 'install_archive' do |parameter|
       is_expected.to contain_file('/var/lib/opensearch').with(
         {
           'ensure'  => parameter['package_ensure'],
-          'revsere' => true,
+          'recurse' => true,
           'force'   => true,
         }
       )
@@ -91,7 +91,7 @@ shared_examples 'install_archive' do |parameter|
       is_expected.to contain_file('/var/log/opensearch').with(
         {
           'ensure'  => parameter['package_ensure'],
-          'revsere' => true,
+          'recurse' => true,
           'force'   => true,
         }
       )

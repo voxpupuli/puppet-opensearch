@@ -54,19 +54,19 @@ class opensearch::install::archive {
   } else {
     file { $opensearch::package_directory:
       ensure  => $opensearch::package_ensure,
-      revsere => true,
+      recurse => true,
       force   => true,
     }
 
     file { '/var/lib/opensearch':
       ensure  => $opensearch::package_ensure,
-      revsere => true,
+      recurse => true,
       force   => true,
     }
 
     file { '/var/log/opensearch':
       ensure  => $opensearch::package_ensure,
-      revsere => true,
+      recurse => true,
       force   => true,
     }
   }

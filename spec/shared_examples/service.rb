@@ -11,7 +11,7 @@ shared_examples 'service' do |parameter, _facts|
         is_expected.to contain_systemd__unit_file('opensearch.service').with(
           {
             'ensure' => 'present',
-            'source' => 'puppet:///modules/opensearch/opensearch.service',
+            'content' => %r{ExecStart=/opt/opensearch/bin/opensearch},
           }
         )
       }

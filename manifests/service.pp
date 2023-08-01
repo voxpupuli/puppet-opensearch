@@ -9,8 +9,9 @@ class opensearch::service {
   if $opensearch::manage_service {
     if $opensearch::package_source == 'archive' {
       systemd::unit_file { 'opensearch.service':
-        ensure => 'present',
-        source => "puppet:///modules/${module_name}/opensearch.service",
+        ensure  => 'present',
+        content => epp('opensearch/opensearch.service.epp'),
+        notify  => Service['opensearch'],
       }
     }
 

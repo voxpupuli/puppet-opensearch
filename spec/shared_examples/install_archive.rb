@@ -53,14 +53,12 @@ shared_examples 'install_archive' do |parameter|
     it {
       is_expected.to contain_archive("/tmp/#{file}").with(
         {
-          'provider'        => 'wget',
-          'path'            => "/tmp/#{file}",
           'extract'         => true,
           'extract_path'    => parameter['package_directory'],
-          'extract_command' => "tar -xvzf /tmp/#{file} --wildcards opensearch-#{parameter['version']}/* -C #{parameter['package_directory']}",
+          'extract_command' => "tar xf %s --strip-components 1 -C #{parameter['package_directory']}",
           'user'            => 'opensearch',
           'group'           => 'opensearch',
-          'creates'         => "#{parameter['package_directory']}/bin",
+          'creates'         => "#{parameter['package_directory']}/bin/opensearch",
           'cleanup'         => true,
           'source'          => "https://artifacts.opensearch.org/releases/bundle/opensearch/#{parameter['version']}/#{file}",
         }

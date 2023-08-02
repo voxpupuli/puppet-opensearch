@@ -33,4 +33,37 @@ describe 'opensearch' do
       it { is_expected.to contain 'http.port: 9200' }
     end
   end
+
+  context 'uninstall' do
+    it 'uninstalls' do
+      apply_manifest(<<~PP, catch_failures: true)
+        package { 'opensearch':
+          ensure => purged,
+        }
+      PP
+    end
+  end
+
+  context 'when installing from an archive' do
+    it_behaves_like 'an idempotent resource' do
+      let(:manifest) do
+        <<~PP
+          class { 'opensearch':
+            version        => '2.9.0',
+            package_source => 'archive',
+            settings       => {
+              # When installing from an archive, the demo certificates are not
+              # installed by default.
+              'plugins.security.disabled' => true,
+            },
+          }
+        PP
+      end
+    end
+
+    describe service('opensearch') do
+      it { is_expected.to be_enabled }
+      it { is_expected.to be_running }
+    end
+  end
 end

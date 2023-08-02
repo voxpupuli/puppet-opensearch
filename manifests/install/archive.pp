@@ -40,14 +40,12 @@ class opensearch::install::archive {
     }
 
     archive { "/tmp/${file}":
-      provider        => 'wget',
-      path            => "/tmp/${file}",
       extract         => true,
       extract_path    => $opensearch::package_directory,
-      extract_command => "tar -xvzf /tmp/${file} --wildcards opensearch-${opensearch::version}/* -C ${opensearch::package_directory}",
+      extract_command => "tar xf %s --strip-components 1 -C ${opensearch::package_directory}",
       user            => 'opensearch',
       group           => 'opensearch',
-      creates         => "${opensearch::package_directory}/bin",
+      creates         => "${opensearch::package_directory}/bin/opensearch",
       cleanup         => true,
       source          => "https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearch::version}/${file}",
     }

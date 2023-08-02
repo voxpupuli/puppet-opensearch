@@ -44,6 +44,34 @@ The following parameters are available in the `opensearch` class:
 * [`use_default_settings`](#-opensearch--use_default_settings)
 * [`default_settings`](#-opensearch--default_settings)
 * [`settings`](#-opensearch--settings)
+* [`use_default_notifications_notifications`](#-opensearch--use_default_notifications_notifications)
+* [`notifications_notifications`](#-opensearch--notifications_notifications)
+* [`use_default_notifications_notifications_core`](#-opensearch--use_default_notifications_notifications_core)
+* [`notifications_notifications_core`](#-opensearch--notifications_notifications_core)
+* [`use_default_observability_observability`](#-opensearch--use_default_observability_observability)
+* [`observability_observability`](#-opensearch--observability_observability)
+* [`use_default_reporting_reports_scheduler`](#-opensearch--use_default_reporting_reports_scheduler)
+* [`reporting_reports_scheduler`](#-opensearch--reporting_reports_scheduler)
+* [`use_default_security_action_groups`](#-opensearch--use_default_security_action_groups)
+* [`security_action_groups`](#-opensearch--security_action_groups)
+* [`use_default_security_allowlist`](#-opensearch--use_default_security_allowlist)
+* [`security_allowlist`](#-opensearch--security_allowlist)
+* [`use_default_security_audit`](#-opensearch--use_default_security_audit)
+* [`security_audit`](#-opensearch--security_audit)
+* [`use_default_security_config`](#-opensearch--use_default_security_config)
+* [`security_config`](#-opensearch--security_config)
+* [`use_default_security_internal_users`](#-opensearch--use_default_security_internal_users)
+* [`security_internal_users`](#-opensearch--security_internal_users)
+* [`use_default_security_nodes_dn`](#-opensearch--use_default_security_nodes_dn)
+* [`security_nodes_dn`](#-opensearch--security_nodes_dn)
+* [`use_default_security_roles_mapping`](#-opensearch--use_default_security_roles_mapping)
+* [`security_roles_mapping`](#-opensearch--security_roles_mapping)
+* [`use_default_security_roles`](#-opensearch--use_default_security_roles)
+* [`security_roles`](#-opensearch--security_roles)
+* [`use_default_security_tenants`](#-opensearch--use_default_security_tenants)
+* [`security_tenants`](#-opensearch--security_tenants)
+* [`use_default_security_whitelist`](#-opensearch--use_default_security_whitelist)
+* [`security_whitelist`](#-opensearch--security_whitelist)
 * [`heap_size`](#-opensearch--heap_size)
 * [`manage_service`](#-opensearch--manage_service)
 * [`service_ensure`](#-opensearch--service_ensure)
@@ -150,6 +178,230 @@ The modules default settings for opensearch.
 Data type: `Hash`
 
 Additional settings for opensearch.
+
+Default value: `{}`
+
+##### <a name="-opensearch--use_default_notifications_notifications"></a>`use_default_notifications_notifications`
+
+Data type: `Boolean`
+
+Whether to use the module default notification settings
+
+Default value: `true`
+
+##### <a name="-opensearch--notifications_notifications"></a>`notifications_notifications`
+
+Data type: `Hash`
+
+Additional notification settings
+
+Default value: `{}`
+
+##### <a name="-opensearch--use_default_notifications_notifications_core"></a>`use_default_notifications_notifications_core`
+
+Data type: `Boolean`
+
+Whether to use the module default notification-core settings
+
+Default value: `true`
+
+##### <a name="-opensearch--notifications_notifications_core"></a>`notifications_notifications_core`
+
+Data type: `Hash`
+
+Additional notification-core settings
+
+Default value: `{}`
+
+##### <a name="-opensearch--use_default_observability_observability"></a>`use_default_observability_observability`
+
+Data type: `Boolean`
+
+Whether to use the module default observability settings
+
+Default value: `true`
+
+##### <a name="-opensearch--observability_observability"></a>`observability_observability`
+
+Data type: `Hash`
+
+Additional observability settings
+
+Default value: `{}`
+
+##### <a name="-opensearch--use_default_reporting_reports_scheduler"></a>`use_default_reporting_reports_scheduler`
+
+Data type: `Boolean`
+
+Whether to use the module default reports-scheduler settings
+
+Default value: `true`
+
+##### <a name="-opensearch--reporting_reports_scheduler"></a>`reporting_reports_scheduler`
+
+Data type: `Hash`
+
+Additional reports-scheduler settings
+
+Default value: `{}`
+
+##### <a name="-opensearch--use_default_security_action_groups"></a>`use_default_security_action_groups`
+
+Data type: `Boolean`
+
+Whether to use the module default security action_groups settings
+
+Default value: `true`
+
+##### <a name="-opensearch--security_action_groups"></a>`security_action_groups`
+
+Data type: `Hash`
+
+Additional security action_groups settings
+
+Default value: `{}`
+
+##### <a name="-opensearch--use_default_security_allowlist"></a>`use_default_security_allowlist`
+
+Data type: `Boolean`
+
+Whether to use the module default security allowlist settings
+
+Default value: `true`
+
+##### <a name="-opensearch--security_allowlist"></a>`security_allowlist`
+
+Data type: `Hash`
+
+Additional security allowlist settings
+
+Default value: `{}`
+
+##### <a name="-opensearch--use_default_security_audit"></a>`use_default_security_audit`
+
+Data type: `Boolean`
+
+Whether to use the module default security audit settings
+
+Default value: `true`
+
+##### <a name="-opensearch--security_audit"></a>`security_audit`
+
+Data type: `Hash`
+
+Additional security audit settings
+
+Default value: `{}`
+
+##### <a name="-opensearch--use_default_security_config"></a>`use_default_security_config`
+
+Data type: `Boolean`
+
+Whether to use the module default security config settings
+
+Default value: `true`
+
+##### <a name="-opensearch--security_config"></a>`security_config`
+
+Data type: `Hash`
+
+Additional security config settings
+
+Default value: `{}`
+
+##### <a name="-opensearch--use_default_security_internal_users"></a>`use_default_security_internal_users`
+
+Data type: `Boolean`
+
+Whether to use the module default security internal_users settings
+
+Default value: `true`
+
+##### <a name="-opensearch--security_internal_users"></a>`security_internal_users`
+
+Data type: `Hash`
+
+Additional security internal_users settings
+
+Default value: `{}`
+
+##### <a name="-opensearch--use_default_security_nodes_dn"></a>`use_default_security_nodes_dn`
+
+Data type: `Boolean`
+
+Whether to use the module default security nodes_dn settings
+
+Default value: `true`
+
+##### <a name="-opensearch--security_nodes_dn"></a>`security_nodes_dn`
+
+Data type: `Hash`
+
+Additional security nodes_dn settings
+
+Default value: `{}`
+
+##### <a name="-opensearch--use_default_security_roles_mapping"></a>`use_default_security_roles_mapping`
+
+Data type: `Boolean`
+
+Whether to use the module default security roles_mapping settings
+
+Default value: `true`
+
+##### <a name="-opensearch--security_roles_mapping"></a>`security_roles_mapping`
+
+Data type: `Hash`
+
+Additional security roles_mapping settings
+
+Default value: `{}`
+
+##### <a name="-opensearch--use_default_security_roles"></a>`use_default_security_roles`
+
+Data type: `Boolean`
+
+Whether to use the module default security roles settings
+
+Default value: `true`
+
+##### <a name="-opensearch--security_roles"></a>`security_roles`
+
+Data type: `Hash`
+
+Additional security roles settings
+
+Default value: `{}`
+
+##### <a name="-opensearch--use_default_security_tenants"></a>`use_default_security_tenants`
+
+Data type: `Boolean`
+
+Whether to use the module default security tenants settings
+
+Default value: `true`
+
+##### <a name="-opensearch--security_tenants"></a>`security_tenants`
+
+Data type: `Hash`
+
+Additional security tenants settings
+
+Default value: `{}`
+
+##### <a name="-opensearch--use_default_security_whitelist"></a>`use_default_security_whitelist`
+
+Data type: `Boolean`
+
+Whether to use the module default security whitelist settings
+
+Default value: `true`
+
+##### <a name="-opensearch--security_whitelist"></a>`security_whitelist`
+
+Data type: `Hash`
+
+Additional security whitelist settings
 
 Default value: `{}`
 

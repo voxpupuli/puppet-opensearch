@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v1.1.0](https://github.com/voxpupuli/puppet-opensearch/tree/v1.1.0) (2023-08-02)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-opensearch/compare/v1.0.0...v1.1.0)
+
+**Implemented enhancements:**
+
+- Add support for managing more configuration files [\#35](https://github.com/voxpupuli/puppet-opensearch/pull/35) ([smortex](https://github.com/smortex))
+
+**Fixed bugs:**
+
+- Fix installation from archive [\#37](https://github.com/voxpupuli/puppet-opensearch/pull/37) ([smortex](https://github.com/smortex))
+- Fix files recurse parameter when ensure =\> absent [\#36](https://github.com/voxpupuli/puppet-opensearch/pull/36) ([smortex](https://github.com/smortex))
+
+**Closed issues:**
+
+- Figure out how to handle opensearch-dashboards [\#20](https://github.com/voxpupuli/puppet-opensearch/issues/20)
+
 ## [v1.0.0](https://github.com/voxpupuli/puppet-opensearch/tree/v1.0.0) (2023-06-16)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-opensearch/compare/v0.3.0...v1.0.0)

@@ -13,6 +13,7 @@ class opensearch::repository::redhat {
 
   yumrepo { 'opensearch':
     ensure        => $opensearch::repository_ensure,
+    descr         => 'OpenSearch',
     baseurl       => $baseurl,
     repo_gpgcheck => '1',
     gpgcheck      => '1',

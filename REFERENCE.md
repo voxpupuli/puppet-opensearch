@@ -73,6 +73,12 @@ The following parameters are available in the `opensearch` class:
 * [`use_default_security_whitelist`](#-opensearch--use_default_security_whitelist)
 * [`security_whitelist`](#-opensearch--security_whitelist)
 * [`heap_size`](#-opensearch--heap_size)
+* [`default_jvm_gc_settings`](#-opensearch--default_jvm_gc_settings)
+* [`use_default_jvm_gc_settings`](#-opensearch--use_default_jvm_gc_settings)
+* [`jvm_gc_settings`](#-opensearch--jvm_gc_settings)
+* [`default_jvm_gc_logging_settings`](#-opensearch--default_jvm_gc_logging_settings)
+* [`use_defaultjvm_gc_logging_settings`](#-opensearch--use_defaultjvm_gc_logging_settings)
+* [`jvm_gc_logging_settings`](#-opensearch--jvm_gc_logging_settings)
 * [`manage_service`](#-opensearch--manage_service)
 * [`service_ensure`](#-opensearch--service_ensure)
 * [`service_enable`](#-opensearch--service_enable)
@@ -82,6 +88,7 @@ The following parameters are available in the `opensearch` class:
 * [`repository_ensure`](#-opensearch--repository_ensure)
 * [`repository_location`](#-opensearch--repository_location)
 * [`repository_gpg_key`](#-opensearch--repository_gpg_key)
+* [`use_default_jvm_gc_logging_settings`](#-opensearch--use_default_jvm_gc_logging_settings)
 
 ##### <a name="-opensearch--version"></a>`version`
 
@@ -413,6 +420,50 @@ The heap size for the JVM.
 
 Default value: `'512m'`
 
+##### <a name="-opensearch--default_jvm_gc_settings"></a>`default_jvm_gc_settings`
+
+Data type: `Array[String[1]]`
+
+Default settings for jvm gc.
+
+Default value: `[]`
+
+##### <a name="-opensearch--use_default_jvm_gc_settings"></a>`use_default_jvm_gc_settings`
+
+Data type: `Boolean`
+
+Whether to use the default jvm gc settings.
+
+Default value: `true`
+
+##### <a name="-opensearch--jvm_gc_settings"></a>`jvm_gc_settings`
+
+Data type: `Array[String[1]]`
+
+User settings for jvm gc.
+
+Default value: `[]`
+
+##### <a name="-opensearch--default_jvm_gc_logging_settings"></a>`default_jvm_gc_logging_settings`
+
+Data type: `Array[String[1]]`
+
+Default settings for jvm gc logging.
+
+Default value: `[]`
+
+##### <a name="-opensearch--use_defaultjvm_gc_logging_settings"></a>`use_defaultjvm_gc_logging_settings`
+
+Whether to use the default jvm gc logging settings.
+
+##### <a name="-opensearch--jvm_gc_logging_settings"></a>`jvm_gc_logging_settings`
+
+Data type: `Array[String[1]]`
+
+User settings for jvm logging gc.
+
+Default value: `[]`
+
 ##### <a name="-opensearch--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
@@ -484,4 +535,12 @@ Data type: `Stdlib::HTTPUrl`
 
 
 Default value: `'https://artifacts.opensearch.org/publickeys/opensearch.pgp'`
+
+##### <a name="-opensearch--use_default_jvm_gc_logging_settings"></a>`use_default_jvm_gc_logging_settings`
+
+Data type: `Boolean`
+
+
+
+Default value: `true`
 

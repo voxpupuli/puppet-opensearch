@@ -159,10 +159,10 @@ opensearch::default_security_config:
             config:
               signing_key: base64 encoded HMAC key or public RSA/ECDSA pem key
               jwt_header: Authorization
-              jwt_url_parameter: 
+              jwt_url_parameter:
               jwt_clock_skew_tolerance_seconds: 30
-              roles_key: 
-              subject_key: 
+              roles_key:
+              subject_key:
           authentication_backend:
             type: noop
         clientcert_auth_domain:
@@ -194,11 +194,11 @@ opensearch::default_security_config:
               verify_hostnames: true
               hosts:
               - localhost:8389
-              bind_dn: 
-              password: 
+              bind_dn:
+              password:
               userbase: ou=people,dc=example,dc=com
               usersearch: "(sAMAccountName={0})"
-              username_attribute: 
+              username_attribute:
       authz:
         roles_from_myldap:
           description: Authorize via LDAP or Active Directory
@@ -213,11 +213,11 @@ opensearch::default_security_config:
               verify_hostnames: true
               hosts:
               - localhost:8389
-              bind_dn: 
-              password: 
+              bind_dn:
+              password:
               rolebase: ou=groups,dc=example,dc=com
               rolesearch: "(member={0})"
-              userroleattribute: 
+              userroleattribute:
               userrolename: disabled
               rolename: cn
               resolve_nested_roles: true
@@ -678,3 +678,20 @@ opensearch::default_settings:
   - ".opensearch-observability"
   - ".opendistro-asynchronous-search-response*"
   - ".replication-metadata-store"
+opensearch::jvm_gc_settings:
+  - '8-10:-XX:+UseConcMarkSweepGC'
+  - '8-10:-XX:CMSInitiatingOccupancyFraction=75'
+  - '8-10:-XX:+UseCMSInitiatingOccupancyOnly'
+  - '11-:-XX:+UseG1GC'
+  - '11-:-XX:G1ReservePercent=25'
+  - '11-:-XX:InitiatingHeapOccupancyPercent=30'
+opensearch::jvm_gc_logging_settings:
+  - '8:-XX:+PrintGCDetails'
+  - '8:-XX:+PrintGCDateStamps'
+  - '8:-XX:+PrintTenuringDistribution'
+  - '8:-XX:+PrintGCApplicationStoppedTime'
+  - '8:-Xloggc:/var/log/opensearch/gc.log'
+  - '8:-XX:+UseGCLogFileRotation'
+  - '8:-XX:NumberOfGCLogFiles=32'
+  - '8:-XX:GCLogFileSize=64m'
+  - '9-:-Xlog:gc*,gc+age=trace,safepoint:file=/var/log/opensearch/gc.log:utctime,pid,tags:filecount=32,filesize=64m'

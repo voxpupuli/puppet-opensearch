@@ -88,6 +88,18 @@
 #
 # @param heap_size
 #   The heap size for the JVM.
+# @param default_jvm_gc_settings
+#   Default settings for jvm gc.
+# @param use_default_jvm_gc_settings
+#   Whether to use the default jvm gc settings.
+# @param jvm_gc_settings
+#   User settings for jvm gc.
+# @param default_jvm_gc_logging_settings
+#   Default settings for jvm gc logging.
+# @param use_defaultjvm_gc_logging_settings
+#   Whether to use the default jvm gc logging settings.
+# @param jvm_gc_logging_settings
+#   User settings for jvm logging gc.
 #
 # @param manage_service
 #   Whether to manage the opensearch service.
@@ -172,6 +184,12 @@ class opensearch (
   ## java settings
   ##
   Pattern[/\d+[mg]/]                        $heap_size                                    = '512m',
+  Array[String[1]]                          $default_jvm_gc_settings                      = [],
+  Boolean                                   $use_default_jvm_gc_settings                  = true,
+  Array[String[1]]                          $jvm_gc_settings                              = [],
+  Array[String[1]]                          $default_jvm_gc_logging_settings              = [],
+  Boolean                                   $use_default_jvm_gc_logging_settings          = true,
+  Array[String[1]]                          $jvm_gc_logging_settings                      = [],
 
   ##
   ## service values

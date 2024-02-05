@@ -34,4 +34,21 @@ TESTS = {
       'indices_queries_cache_size' => 10,
     },
   },
+  'with some jvm gc settings' => {
+    'jvm_gc_settings' => [
+      '-XX:+UseG1GC',
+      '-XX:G1ReservePercent=50',
+      '-XX:InitiatingHeapOccupancyPercent=50',
+    ],
+  },
+  'with only jvm gc logging settings given' => {
+    'use_default_jvm_gc_logging_settings' => false,
+    'jvm_gc_logging_settings' => [
+      '-XX:+PrintGCApplicationStoppedTime',
+      '-Xloggc:/var/log/opensearch/gc.log',
+      '-XX:+UseGCLogFileRotation',
+      '-XX:NumberOfGCLogFiles=32',
+      '-XX:GCLogFileSize=64m',
+    ],
+  },
 }.freeze

@@ -77,7 +77,7 @@ The following parameters are available in the `opensearch` class:
 * [`use_default_jvm_gc_settings`](#-opensearch--use_default_jvm_gc_settings)
 * [`jvm_gc_settings`](#-opensearch--jvm_gc_settings)
 * [`default_jvm_gc_logging_settings`](#-opensearch--default_jvm_gc_logging_settings)
-* [`use_defaultjvm_gc_logging_settings`](#-opensearch--use_defaultjvm_gc_logging_settings)
+* [`use_default_jvm_gc_logging_settings`](#-opensearch--use_default_jvm_gc_logging_settings)
 * [`jvm_gc_logging_settings`](#-opensearch--jvm_gc_logging_settings)
 * [`manage_service`](#-opensearch--manage_service)
 * [`service_ensure`](#-opensearch--service_ensure)
@@ -88,7 +88,6 @@ The following parameters are available in the `opensearch` class:
 * [`repository_ensure`](#-opensearch--repository_ensure)
 * [`repository_location`](#-opensearch--repository_location)
 * [`repository_gpg_key`](#-opensearch--repository_gpg_key)
-* [`use_default_jvm_gc_logging_settings`](#-opensearch--use_default_jvm_gc_logging_settings)
 
 ##### <a name="-opensearch--version"></a>`version`
 
@@ -102,7 +101,7 @@ Default value: `undef`
 
 Data type: `Boolean`
 
-Whether to manage the package installation-
+Whether to manage the package installation.
 
 Default value: `true`
 
@@ -146,7 +145,7 @@ Default value: `'/opt/opensearch'`
 
 Data type: `Boolean`
 
-Whether to enable the `apt::pin` or `yum::versionlock` for the package
+Whether to enable the `apt::pin` or `yum::versionlock` for the package.
 
 Default value: `true`
 
@@ -154,7 +153,7 @@ Default value: `true`
 
 Data type: `Integer`
 
-The priority for apt::pin of the opensearch package
+The priority for apt::pin of the opensearch package.
 
 Default value: `1001`
 
@@ -452,9 +451,13 @@ Default settings for jvm gc logging.
 
 Default value: `[]`
 
-##### <a name="-opensearch--use_defaultjvm_gc_logging_settings"></a>`use_defaultjvm_gc_logging_settings`
+##### <a name="-opensearch--use_default_jvm_gc_logging_settings"></a>`use_default_jvm_gc_logging_settings`
+
+Data type: `Boolean`
 
 Whether to use the default jvm gc logging settings.
+
+Default value: `true`
 
 ##### <a name="-opensearch--jvm_gc_logging_settings"></a>`jvm_gc_logging_settings`
 
@@ -535,12 +538,4 @@ Data type: `Stdlib::HTTPUrl`
 
 
 Default value: `'https://artifacts.opensearch.org/publickeys/opensearch.pgp'`
-
-##### <a name="-opensearch--use_default_jvm_gc_logging_settings"></a>`use_default_jvm_gc_logging_settings`
-
-Data type: `Boolean`
-
-
-
-Default value: `true`
 

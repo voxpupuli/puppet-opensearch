@@ -5,7 +5,7 @@
 #   The version to be installed. See also: https://opensearch.org/downloads.html
 #
 # @param manage_package
-#   Whether to manage the package installation-
+#   Whether to manage the package installation.
 # @param package_source
 #   The source for the package.
 # @param package_ensure
@@ -17,9 +17,9 @@
 # @param package_directory
 #   The directory to install the package. Only used for package_install_method = 'archive'.
 # @param pin_package
-#   Whether to enable the `apt::pin` or `yum::versionlock` for the package
+#   Whether to enable the `apt::pin` or `yum::versionlock` for the package.
 # @param apt_pin_priority
-#   The priority for apt::pin of the opensearch package
+#   The priority for apt::pin of the opensearch package.
 #
 # @param manage_config
 #   Whether to manage the configuration.
@@ -96,7 +96,7 @@
 #   User settings for jvm gc.
 # @param default_jvm_gc_logging_settings
 #   Default settings for jvm gc logging.
-# @param use_defaultjvm_gc_logging_settings
+# @param use_default_jvm_gc_logging_settings
 #   Whether to use the default jvm gc logging settings.
 # @param jvm_gc_logging_settings
 #   User settings for jvm logging gc.

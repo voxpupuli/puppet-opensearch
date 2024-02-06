@@ -678,14 +678,14 @@ opensearch::default_settings:
   - ".opensearch-observability"
   - ".opendistro-asynchronous-search-response*"
   - ".replication-metadata-store"
-opensearch::jvm_gc_settings:
+opensearch::default_jvm_gc_settings:
   - '8-10:-XX:+UseConcMarkSweepGC'
   - '8-10:-XX:CMSInitiatingOccupancyFraction=75'
   - '8-10:-XX:+UseCMSInitiatingOccupancyOnly'
   - '11-:-XX:+UseG1GC'
   - '11-:-XX:G1ReservePercent=25'
   - '11-:-XX:InitiatingHeapOccupancyPercent=30'
-opensearch::jvm_gc_logging_settings:
+opensearch::default_jvm_gc_logging_settings:
   - '8:-XX:+PrintGCDetails'
   - '8:-XX:+PrintGCDateStamps'
   - '8:-XX:+PrintTenuringDistribution'

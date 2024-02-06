@@ -72,48 +72,71 @@ def get_defaults(facts)
     ##
     ## version
     ##
-    'version'                   => :undef,
+    'version'                             => :undef,
 
     ##
     ## package values
     ##
-    'manage_package'            => true,
-    'package_architecture'      => package_architecture,
-    'package_directory'         => '/opt/opensearch',
-    'package_ensure'            => 'present',
-    'package_provider'          => package_provider,
-    'package_source'            => 'repository',
-    'pin_package'               => true,
-    'apt_pin_priority'          => 999,
+    'manage_package'                      => true,
+    'package_architecture'                => package_architecture,
+    'package_directory'                   => '/opt/opensearch',
+    'package_ensure'                      => 'present',
+    'package_provider'                    => package_provider,
+    'package_source'                      => 'repository',
+    'pin_package'                         => true,
+    'apt_pin_priority'                    => 999,
 
     ##
     ## repository
     ##
-    'manage_repository'         => true,
-    'repository_ensure'         => 'present',
-    'repository_location'       => :undef,
-    'repository_gpg_key'        => 'https://artifacts.opensearch.org/publickeys/opensearch.pgp',
+    'manage_repository'                   => true,
+    'repository_ensure'                   => 'present',
+    'repository_location'                 => :undef,
+    'repository_gpg_key'                  => 'https://artifacts.opensearch.org/publickeys/opensearch.pgp',
 
     ##
     ## opensearch settings
     ##
-    'manage_config'             => true,
-    'use_default_settings'      => true,
-    'default_settings'          => default_settings,
-    'settings'                  => {},
+    'manage_config'                       => true,
+    'use_default_settings'                => true,
+    'default_settings'                    => default_settings,
+    'settings'                            => {},
 
     ##
     ## java settings
     ##
-    'heap_size'                 => '512m',
+    'heap_size'                           => '512m',
+    'default_jvm_gc_settings'             => [
+      '8-10:-XX:+UseConcMarkSweepGC',
+      '8-10:-XX:CMSInitiatingOccupancyFraction=75',
+      '8-10:-XX:+UseCMSInitiatingOccupancyOnly',
+      '11-:-XX:+UseG1GC',
+      '11-:-XX:G1ReservePercent=25',
+      '11-:-XX:InitiatingHeapOccupancyPercent=30',
+    ],
+    'use_default_jvm_gc_settings'         => true,
+    'jvm_gc_settings'                     => [],
+    'default_jvm_gc_logging_settings'     => [
+      '8:-XX:+PrintGCDetails',
+      '8:-XX:+PrintGCDateStamps',
+      '8:-XX:+PrintTenuringDistribution',
+      '8:-XX:+PrintGCApplicationStoppedTime',
+      '8:-Xloggc:/var/log/opensearch/gc.log',
+      '8:-XX:+UseGCLogFileRotation',
+      '8:-XX:NumberOfGCLogFiles=32',
+      '8:-XX:GCLogFileSize=64m',
+      '9-:-Xlog:gc*,gc+age=trace,safepoint:file=/var/log/opensearch/gc.log:utctime,pid,tags:filecount=32,filesize=64m',
+    ],
+    'use_default_jvm_gc_logging_settings' => true,
+    'jvm_gc_logging_settings'             => [],
 
     ##
     ## service values
     ##
-    'manage_service'            => true,
-    'service_ensure'            => 'running',
-    'service_enable'            => true,
-    'restart_on_config_change'  => true,
-    'restart_on_package_change' => true,
+    'manage_service'                      => true,
+    'service_ensure'                      => 'running',
+    'service_enable'                      => true,
+    'restart_on_config_change'            => true,
+    'restart_on_package_change'           => true,
   }
 end

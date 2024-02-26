@@ -20,6 +20,8 @@
 #   Whether to enable the `apt::pin` or `yum::versionlock` for the package.
 # @param apt_pin_priority
 #   The priority for apt::pin of the opensearch package.
+# @param initial_admin_password
+#   Password for intial installation of the package.
 #
 # @param manage_config
 #   Whether to manage the configuration.
@@ -116,6 +118,7 @@ class opensearch (
   Enum['x64', 'arm64']                      $package_architecture,
   Enum['dpkg', 'rpm']                       $package_provider,
   Hash                                      $default_settings,
+  String[1]                                 $initial_admin_password,
 
   ##
   ## version

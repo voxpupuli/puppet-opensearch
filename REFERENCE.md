@@ -40,6 +40,7 @@ The following parameters are available in the `opensearch` class:
 * [`package_directory`](#-opensearch--package_directory)
 * [`pin_package`](#-opensearch--pin_package)
 * [`apt_pin_priority`](#-opensearch--apt_pin_priority)
+* [`initial_admin_password`](#-opensearch--initial_admin_password)
 * [`manage_config`](#-opensearch--manage_config)
 * [`use_default_settings`](#-opensearch--use_default_settings)
 * [`default_settings`](#-opensearch--default_settings)
@@ -156,6 +157,12 @@ Data type: `Integer`
 The priority for apt::pin of the opensearch package.
 
 Default value: `1001`
+
+##### <a name="-opensearch--initial_admin_password"></a>`initial_admin_password`
+
+Data type: `String[1]`
+
+Password for intial installation of the package.
 
 ##### <a name="-opensearch--manage_config"></a>`manage_config`
 

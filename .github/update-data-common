@@ -36,7 +36,6 @@ plugin_config = {
       'roles_mapping',
       'roles',
       'tenants',
-      'whitelist',
     ],
   },
 }

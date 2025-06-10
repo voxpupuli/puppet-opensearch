@@ -7,7 +7,7 @@ class opensearch::repository::debian {
   assert_private()
 
   $location = $opensearch::version =~ Undef ? {
-    true  => pick($opensearch::repository_location, 'https://artifacts.opensearch.org/releases/bundle/opensearch/2.x/apt'),
+    true  => pick($opensearch::repository_location, 'https://artifacts.opensearch.org/releases/bundle/opensearch/3.x/apt'),
     false => pick($opensearch::repository_location, "https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearch::version[0]}.x/apt"),
   }
 

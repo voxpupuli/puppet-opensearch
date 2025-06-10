@@ -32,17 +32,20 @@
 ##
 ################################################################
 
-##
 ## GC configuration
-##
-<% if $opensearch::use_default_jvm_gc_settings { -%>
-<%   $opensearch::default_jvm_gc_settings.each |$setting| { -%>
-<%= $setting %>
-<%   } -%>
-<% } -%>
-<% $opensearch::jvm_gc_settings.each |$setting| { -%>
-<%= $setting %>
-<% } -%>
+8-10:-XX:+UseConcMarkSweepGC
+8-10:-XX:CMSInitiatingOccupancyFraction=75
+8-10:-XX:+UseCMSInitiatingOccupancyOnly
+
+## G1GC Configuration
+# NOTE: G1GC is the default GC for all JDKs 11 and newer
+11-:-XX:+UseG1GC
+# See https://github.com/elastic/elasticsearch/pull/46169 for the history
+# behind these settings, but the tl;dr is that default values can lead
+# to situations where heap usage grows enough to trigger a circuit breaker
+# before GC kicks in.
+11-:-XX:G1ReservePercent=25
+11-:-XX:InitiatingHeapOccupancyPercent=30
 
 ## JVM temporary directory
 -Djava.io.tmpdir=${OPENSEARCH_TMPDIR}
@@ -60,20 +63,29 @@
 # specify an alternative path for JVM fatal error logs
 -XX:ErrorFile=/var/log/opensearch/hs_err_pid%p.log
 
-##
-## JDK GC logging
-##
-<% if $opensearch::use_default_jvm_gc_logging_settings { -%>
-<%   $opensearch::default_jvm_gc_logging_settings.each |$setting| { -%>
-<%= $setting %>
-<%   } -%>
-<% } -%>
-<% $opensearch::jvm_gc_logging_settings.each |$setting| { -%>
-<%= $setting %>
-<% } -%>
+## JDK 8 GC logging
+8:-XX:+PrintGCDetails
+8:-XX:+PrintGCDateStamps
+8:-XX:+PrintTenuringDistribution
+8:-XX:+PrintGCApplicationStoppedTime
+8:-Xloggc:/var/log/opensearch/gc.log
+8:-XX:+UseGCLogFileRotation
+8:-XX:NumberOfGCLogFiles=32
+8:-XX:GCLogFileSize=64m
 
-# Explicitly allow security manager (https://bugs.openjdk.java.net/browse/JDK-8270380)
-18-:-Djava.security.manager=allow
+# JDK 9+ GC logging
+9-:-Xlog:gc*,gc+age=trace,safepoint:file=/var/log/opensearch/gc.log:utctime,pid,tags:filecount=32,filesize=64m
+
+# JDK 20+ Incubating Vector Module for SIMD optimizations;
+# disabling may reduce performance on vector optimized lucene
+20-:--add-modules=jdk.incubator.vector
+
+# See please https://bugs.openjdk.org/browse/JDK-8341127 (openjdk/jdk#21283)
+23:-XX:CompileCommand=dontinline,java/lang/invoke/MethodHandle.setAsTypeCache
+23:-XX:CompileCommand=dontinline,java/lang/invoke/MethodHandle.asTypeUncached
+
+21-:-javaagent:agent/opensearch-agent.jar
+21-:--add-opens=java.base/java.nio=org.apache.arrow.memory.core,ALL-UNNAMED
 
 ## OpenSearch Performance Analyzer
 -Dclk.tck=100

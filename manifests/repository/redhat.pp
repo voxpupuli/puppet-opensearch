@@ -7,7 +7,7 @@ class opensearch::repository::redhat {
   assert_private()
 
   $baseurl = $opensearch::version =~ Undef ? {
-    true  => pick($opensearch::repository_location, 'https://artifacts.opensearch.org/releases/bundle/opensearch/2.x/yum'),
+    true  => pick($opensearch::repository_location, 'https://artifacts.opensearch.org/releases/bundle/opensearch/3.x/yum'),
     false => pick($opensearch::repository_location, "https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearch::version[0]}.x/yum"),
   }
 

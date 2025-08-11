@@ -88,6 +88,7 @@ The following parameters are available in the `opensearch` class:
 * [`repository_ensure`](#-opensearch--repository_ensure)
 * [`repository_location`](#-opensearch--repository_location)
 * [`repository_gpg_key`](#-opensearch--repository_gpg_key)
+* [`heap_dump_on_oom`](#-opensearch--heap_dump_on_oom)
 
 ##### <a name="-opensearch--version"></a>`version`
 
@@ -538,4 +539,12 @@ Data type: `Stdlib::HTTPUrl`
 
 
 Default value: `'https://artifacts.opensearch.org/publickeys/opensearch.pgp'`
+
+##### <a name="-opensearch--heap_dump_on_oom"></a>`heap_dump_on_oom`
+
+Data type: `Boolean`
+
+
+
+Default value: `true`
 

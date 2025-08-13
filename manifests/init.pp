@@ -184,6 +184,7 @@ class opensearch (
   ## java settings
   ##
   Pattern[/\d+[mg]/]                        $heap_size                                    = '512m',
+  Boolean                                   $heap_dump_on_oom                             = true,
   Array[String[1]]                          $default_jvm_gc_settings                      = [],
   Boolean                                   $use_default_jvm_gc_settings                  = true,
   Array[String[1]]                          $jvm_gc_settings                              = [],

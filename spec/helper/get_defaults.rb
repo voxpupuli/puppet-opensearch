@@ -106,6 +106,7 @@ def get_defaults(facts)
     ## java settings
     ##
     'heap_size'                           => '512m',
+    'heap_dump_on_oom'                    => true,
     'default_jvm_gc_settings'             => [
       '8-10:-XX:+UseConcMarkSweepGC',
       '8-10:-XX:CMSInitiatingOccupancyFraction=75',

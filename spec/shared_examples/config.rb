@@ -33,7 +33,7 @@ shared_examples 'config' do |parameter|
           'ensure'  => 'file',
           'owner'   => 'opensearch',
           'group'   => 'opensearch',
-          'mode'    => '0640',
+          'mode'    => '0644',
           'content' => settings.to_yaml,
         }
       )
@@ -45,7 +45,7 @@ shared_examples 'config' do |parameter|
           'ensure'  => 'file',
           'owner'   => 'opensearch',
           'group'   => 'opensearch',
-          'mode'    => '0640',
+          'mode'    => '0644',
           'content' => %r{-Xms#{parameter['heap_size']}},
         }
       )

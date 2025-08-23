@@ -64,12 +64,20 @@ shared_examples 'install_package' do |parameter, facts|
   end
 
   it {
+    is_expected.to contain_exec('set_initial_password_environment').with(
+      {
+        'command' => "env OPENSEARCH_INITIAL_ADMIN_PASSWORD=#{parameter['initial_admin_password']}"
+      }
+    )
+  }
+
+  it {
     is_expected.to contain_package('opensearch').with(
       {
         'ensure'   => ensure_value,
         'provider' => provider,
         'source'   => source,
       }
-    )
+    ).that_requires('Exec[set_initial_password_environment]')
   }
 end

@@ -61,9 +61,15 @@ class opensearch::install::package {
     }
   }
 
+  exec { 'set_initial_password_environment':
+    path    => $facts['path'],
+    command => "env OPENSEARCH_INITIAL_ADMIN_PASSWORD=${opensearch::initial_admin_password}",
+  }
+
   package { 'opensearch':
     ensure   => $ensure,
     provider => $provider,
     source   => $source,
+    require  => Exec['set_initial_password_environment'],
   }
 }

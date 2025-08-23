@@ -6,7 +6,11 @@ describe 'opensearch' do
   context 'default parameter' do
     it_behaves_like 'an idempotent resource' do
       let(:manifest) do
-        'include opensearch'
+        <<~PP
+          class { 'opensearch':
+            initial_admin_password => 'some_random_password',
+          }
+        PP
       end
     end
 
@@ -49,9 +53,10 @@ describe 'opensearch' do
       let(:manifest) do
         <<~PP
           class { 'opensearch':
-            version        => '2.9.0',
-            package_source => 'archive',
-            settings       => {
+            version                => '2.9.0',
+            package_source         => 'archive',
+            initial_admin_password => 'some_random_password',
+            settings               => {
               # When installing from an archive, the demo certificates are not
               # installed by default.
               'plugins.security.disabled' => true,

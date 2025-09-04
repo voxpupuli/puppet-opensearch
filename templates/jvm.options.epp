@@ -77,6 +77,7 @@
 <%= $setting %>
 <% } -%>
 
+<% if $opensearch::version =~ /^2\./ { -%>
 # Explicitly allow security manager (https://bugs.openjdk.java.net/browse/JDK-8270380)
 18-:-Djava.security.manager=allow
 
@@ -85,3 +86,15 @@
 -Djdk.attach.allowAttachSelf=true
 -Djava.security.policy=file:///etc/opensearch/opensearch-performance-analyzer/opensearch_security.policy
 --add-opens=jdk.attach/sun.tools.attach=ALL-UNNAMED
+<% } else { -%>
+# JDK 20+ Incubating Vector Module for SIMD optimizations;
+# disabling may reduce performance on vector optimized lucene
+20-:--add-modules=jdk.incubator.vector
+
+# See please https://bugs.openjdk.org/browse/JDK-8341127 (openjdk/jdk#21283)
+23:-XX:CompileCommand=dontinline,java/lang/invoke/MethodHandle.setAsTypeCache
+23:-XX:CompileCommand=dontinline,java/lang/invoke/MethodHandle.asTypeUncached
+
+21-:-javaagent:agent/opensearch-agent.jar
+21-:--enable-native-access=ALL-UNNAMED
+<% } -%>

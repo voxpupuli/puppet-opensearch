@@ -538,7 +538,7 @@ Data type: `Stdlib::HTTPUrl`
 
 
 
-Default value: `'https://artifacts.opensearch.org/publickeys/opensearch.pgp'`
+Default value: `'https://artifacts.opensearch.org/publickeys/opensearch-release.pgp'`
 
 ##### <a name="-opensearch--heap_dump_on_oom"></a>`heap_dump_on_oom`
 

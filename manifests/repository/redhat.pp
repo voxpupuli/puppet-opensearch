@@ -15,6 +15,7 @@ class opensearch::repository::redhat {
     ensure        => $opensearch::repository_ensure,
     descr         => 'OpenSearch',
     baseurl       => $baseurl,
+    enabled       => '1',
     repo_gpgcheck => '1',
     gpgcheck      => '1',
     gpgkey        => $opensearch::repository_gpg_key,

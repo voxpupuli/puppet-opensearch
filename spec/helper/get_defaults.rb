@@ -21,7 +21,7 @@ def get_defaults(facts)
     'discovery.seed_hosts'                                         => [
       '127.0.0.1',
     ],
-    'gateway.recover_after_nodes'                                  => 0,
+    'gateway.recover_after_data_nodes'                             => 0,
     'http.port'                                                    => 9200,
     'network.host'                                                 => '127.0.0.1',
     'node.max_local_storage_nodes'                                 => 3,
@@ -92,7 +92,7 @@ def get_defaults(facts)
     'manage_repository'                   => true,
     'repository_ensure'                   => 'present',
     'repository_location'                 => :undef,
-    'repository_gpg_key'                  => 'https://artifacts.opensearch.org/publickeys/opensearch.pgp',
+    'repository_gpg_key'                  => 'https://artifacts.opensearch.org/publickeys/opensearch-release.pgp',
 
     ##
     ## opensearch settings

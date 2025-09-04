@@ -56,7 +56,7 @@ include opensearch
 
 ```puppet
 class { 'opensearch':
-  version => '2.6.0',
+  version => '3.2.0',
 }
 ```
 

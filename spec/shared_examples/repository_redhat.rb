@@ -22,9 +22,10 @@ shared_examples 'repository_redhat' do |parameter|
       {
         'ensure'        => parameter['repository_ensure'],
         'baseurl'       => baseurl,
+        'enabled'       => '1',
         'repo_gpgcheck' => '1',
         'gpgcheck'      => '1',
-        'gpgkey'        => 'https://artifacts.opensearch.org/publickeys/opensearch.pgp',
+        'gpgkey'        => 'https://artifacts.opensearch.org/publickeys/opensearch-release.pgp',
       }
     )
   }

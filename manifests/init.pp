@@ -138,7 +138,7 @@ class opensearch (
   Boolean                                   $manage_repository                            = true,
   Enum['present', 'absent']                 $repository_ensure                            = 'present',
   Optional[Stdlib::HTTPUrl]                 $repository_location                          = undef,
-  Stdlib::HTTPUrl                           $repository_gpg_key                           = 'https://artifacts.opensearch.org/publickeys/opensearch.pgp',
+  Stdlib::HTTPUrl                           $repository_gpg_key                           = 'https://artifacts.opensearch.org/publickeys/opensearch-release.pgp',
 
   ##
   ## opensearch settings

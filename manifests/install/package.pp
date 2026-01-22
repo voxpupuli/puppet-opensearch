@@ -61,9 +61,12 @@ class opensearch::install::package {
     }
   }
 
+  $admin_password = extlib::cache_data('opensearch_cache_data', 'admin_password', extlib::random_password(32))
+
   package { 'opensearch':
-    ensure   => $ensure,
-    provider => $provider,
-    source   => $source,
+    ensure      => $ensure,
+    provider    => $provider,
+    source      => $source,
+    environment => ["OPENSEARCH_INITIAL_ADMIN_PASSWORD=${admin_password}"],
   }
 }

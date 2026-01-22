@@ -45,6 +45,7 @@ class opensearch::install::package {
             version  => $opensearch::version,
             packages => 'opensearch',
             priority => $opensearch::apt_pin_priority,
+            before   => Exec['install opensearch with initial admin password'],
           }
         }
         'RedHat': {
@@ -52,12 +53,38 @@ class opensearch::install::package {
 
           yum::versionlock { 'opensearch':
             version => $opensearch::version,
+            before  => Exec['install opensearch with initial admin password'],
           }
         }
         default: {
           fail('Package pinning is not available for your OS!')
         }
       }
+    }
+
+    $admin_password = extlib::cache_data('opensearch_cache_data', 'admin_password', extlib::random_password(32))
+
+    case $facts['os']['family'] {
+      'Debian': {
+        $command_install = 'apt-get -y install opensearch'
+        $command_onlyif = "! dpkg-query -W -f='\${Status}' opensearch 2>/dev/null | grep -q 'install ok installed'"
+      }
+      'RedHat': {
+        $command_install = 'yum -y install opensearch'
+        $command_onlyif = '! rpm -q opensearch'
+      }
+      default: {
+        fail('Package pinning is not available for your OS!')
+      }
+    }
+
+    exec { 'install opensearch with initial admin password':
+      command     => $command_install,
+      onlyif      => $command_onlyif,
+      environment => ["OPENSEARCH_INITIAL_ADMIN_PASSWORD=${admin_password}"],
+      provider    => 'shell',
+      before      => Package['opensearch'],
+      require     => Class['opensearch::repository'],
     }
   }
 

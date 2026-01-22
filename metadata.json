@@ -19,6 +19,10 @@
       "version_requirement": ">= 1.2.5 < 10.0.0"
     },
     {
+      "name": "puppet/extlib",
+      "version_requirement": ">= 3.0.0 < 8.0.0"
+    },
+    {
       "name": "puppetlabs/stdlib",
       "version_requirement": ">= 9.0.0 < 10.0.0"
     },

@@ -21,7 +21,6 @@ def get_defaults(facts)
     'discovery.seed_hosts'                                         => [
       '127.0.0.1',
     ],
-    'gateway.recover_after_nodes'                                  => 0,
     'http.port'                                                    => 9200,
     'network.host'                                                 => '127.0.0.1',
     'node.max_local_storage_nodes'                                 => 3,

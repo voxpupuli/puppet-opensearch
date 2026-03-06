@@ -15,7 +15,7 @@ shared_examples 'install_archive' do |parameter|
         'managehome' => false,
         'system'     => true,
         'shell'      => '/bin/false',
-      }
+      },
     )
   }
 
@@ -26,7 +26,7 @@ shared_examples 'install_archive' do |parameter|
           'ensure' => 'directory',
           'owner'  => 'opensearch',
           'group'  => 'opensearch',
-        }
+        },
       )
     }
 
@@ -36,7 +36,7 @@ shared_examples 'install_archive' do |parameter|
           'ensure' => 'directory',
           'owner'  => 'opensearch',
           'group'  => 'opensearch',
-        }
+        },
       )
     }
 
@@ -46,7 +46,7 @@ shared_examples 'install_archive' do |parameter|
           'ensure' => 'directory',
           'owner'  => 'opensearch',
           'group'  => 'opensearch',
-        }
+        },
       )
     }
 
@@ -61,7 +61,7 @@ shared_examples 'install_archive' do |parameter|
           'creates'         => "#{parameter['package_directory']}/bin/opensearch",
           'cleanup'         => true,
           'source'          => "https://artifacts.opensearch.org/releases/bundle/opensearch/#{parameter['version']}/#{file}",
-        }
+        },
       )
     }
   else
@@ -71,7 +71,7 @@ shared_examples 'install_archive' do |parameter|
           'ensure'  => parameter['package_ensure'],
           'recurse' => true,
           'force'   => true,
-        }
+        },
       )
     }
 
@@ -81,7 +81,7 @@ shared_examples 'install_archive' do |parameter|
           'ensure'  => parameter['package_ensure'],
           'recurse' => true,
           'force'   => true,
-        }
+        },
       )
     }
 
@@ -91,7 +91,7 @@ shared_examples 'install_archive' do |parameter|
           'ensure'  => parameter['package_ensure'],
           'recurse' => true,
           'force'   => true,
-        }
+        },
       )
     }
   end

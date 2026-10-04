@@ -25,7 +25,7 @@ shared_examples 'repository_redhat' do |parameter|
         'repo_gpgcheck' => '1',
         'gpgcheck'      => '1',
         'gpgkey'        => 'https://artifacts.opensearch.org/publickeys/opensearch.pgp',
-      }
+      },
     )
   }
 end

@@ -88,6 +88,8 @@
 #
 # @param heap_size
 #   The heap size for the JVM.
+# @param jvm_settings
+#   User settings for jvm.
 # @param default_jvm_gc_settings
 #   Default settings for jvm gc.
 # @param use_default_jvm_gc_settings
@@ -185,6 +187,7 @@ class opensearch (
   ##
   Pattern[/\d+[mg]/]                        $heap_size                                    = '512m',
   Boolean                                   $heap_dump_on_oom                             = true,
+  Array[String[1]]                          $jvm_settings                                 = [],
   Array[String[1]]                          $default_jvm_gc_settings                      = [],
   Boolean                                   $use_default_jvm_gc_settings                  = true,
   Array[String[1]]                          $jvm_gc_settings                              = [],

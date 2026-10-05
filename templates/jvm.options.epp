@@ -21,6 +21,9 @@
 
 -Xms<%= $opensearch::heap_size %>
 -Xmx<%= $opensearch::heap_size %>
+<% $opensearch::jvm_settings.each |$setting| { -%>
+<%= $setting %>
+<% } -%>
 
 ################################################################
 ## Expert settings

@@ -73,6 +73,8 @@ The following parameters are available in the `opensearch` class:
 * [`use_default_security_whitelist`](#-opensearch--use_default_security_whitelist)
 * [`security_whitelist`](#-opensearch--security_whitelist)
 * [`heap_size`](#-opensearch--heap_size)
+* [`jvm_settings`](#-opensearch--jvm_settings)
+* [`jvm_fatal_error_log`](#-opensearch--jvm_fatal_error_log)
 * [`default_jvm_gc_settings`](#-opensearch--default_jvm_gc_settings)
 * [`use_default_jvm_gc_settings`](#-opensearch--use_default_jvm_gc_settings)
 * [`jvm_gc_settings`](#-opensearch--jvm_gc_settings)
@@ -421,6 +423,22 @@ Data type: `Pattern[/\d+[mg]/]`
 The heap size for the JVM.
 
 Default value: `'512m'`
+
+##### <a name="-opensearch--jvm_settings"></a>`jvm_settings`
+
+Data type: `Array[String[1]]`
+
+User settings for jvm.
+
+Default value: `[]`
+
+##### <a name="-opensearch--jvm_fatal_error_log"></a>`jvm_fatal_error_log`
+
+Data type: `Stdlib::Absolutepath`
+
+Log path for JVM fatal error
+
+Default value: `'/var/log/opensearch/hs_err_pid%p.log'`
 
 ##### <a name="-opensearch--default_jvm_gc_settings"></a>`default_jvm_gc_settings`
 

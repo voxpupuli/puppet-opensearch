@@ -18,9 +18,9 @@ shared_examples 'repository_redhat' do |parameter|
             end
   key_version = if parameter['version'] && (parameter['version'] == '3.9.0')
                   '3'
-                   else
-                     '2'
-                   end
+                else
+                  '2'
+                end
   it {
     is_expected.to contain_yumrepo('opensearch').with(
       {

@@ -38,20 +38,21 @@ describe 'opensearch' do
       its(:content) { is_expected.to match(%r{---}) }
     end
 
-    #describe file('/etc/apt/keyrings/opensearch-2.asc') do
-    #  it { is_expected.to be_file }
-    #  its(:content) { is_expected.to include('mQINBGCa8OoBEADPB4ULnunicJnz+QeANNMQ5FoaVx7ImHBpLwn4Dmgc189JukZO') }
-    #end
-
-    #describe file('/etc/apt/sources.list.d/opensearch.list') do
-    #  it { is_expected.to be_file }
-    #  its(:content) { is_expected.to match(%r{2.x}) }
-    #  its(:content) { is_expected.to match(%r{/etc/apt/keyrings/opensearch-2\.asc}) }
-    #end
-
     describe command('/usr/share/opensearch/bin/opensearch --version') do
       its(:stdout) { is_expected.to match(%r{Version: 2.}) }
       its(:exit_status) { is_expected.to eq 0 }
+    end
+  end
+
+  # rubocop:disable RSpec/RepeatedExampleGroupBody
+  # rubocop:disable RSpec/RepeatedExampleGroupDescription
+  context 'uninstall' do
+    it 'uninstalls' do
+      apply_manifest(<<~PP, catch_failures: true)
+        package { 'opensearch':
+          ensure => purged,
+        }
+      PP
     end
   end
 
@@ -90,17 +91,6 @@ describe 'opensearch' do
       its(:content) { is_expected.to match(%r{---}) }
     end
 
-    #describe file('/etc/apt/keyrings/opensearch-3.asc') do
-    #  it { is_expected.to be_file }
-    #  its(:content) { is_expected.to include('mQINBGfKJPIBEAClKcqo6zbMHg4ni+DndFKpi/QQU/ZTUKtzIWk73zGaYbpZgvTz') }
-    #end
-
-    #describe file('/etc/apt/sources.list.d/opensearch.list') do
-    #  it { is_expected.to be_file }
-    #  its(:content) { is_expected.to match(%r{3.x}) }
-    #  its(:content) { is_expected.to match(%r{/etc/apt/keyrings/opensearch-3\.asc}) }
-    #end
-
     describe command('/usr/share/opensearch/bin/opensearch --version') do
       its(:stdout) { is_expected.to match(%r{Version: 3.9}) }
       its(:exit_status) { is_expected.to eq 0 }
@@ -116,7 +106,6 @@ describe 'opensearch' do
       PP
     end
 
-    # rubocop:disable RSpec/RepeatedExampleGroupBody
     describe file('/usr/share/opensearch/bin/opensearch') do
       it { is_expected.not_to exist }
     end
@@ -125,6 +114,7 @@ describe 'opensearch' do
       it { is_expected.not_to exist }
     end
     # rubocop:enable RSpec/RepeatedExampleGroupBody
+    # rubocop:enable RSpec/RepeatedExampleGroupDescription
   end
 
   context 'when installing from an archive' do

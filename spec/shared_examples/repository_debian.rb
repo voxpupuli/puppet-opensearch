@@ -19,9 +19,9 @@ shared_examples 'repository_debian' do |parameter|
 
   key_version = if parameter['version'] && (parameter['version'] == '3.9.0')
                   '3'
-                   else
-                     '2'
-                   end
+                else
+                  '2'
+                end
   it {
     is_expected.to contain_apt__source('opensearch').with(
       {

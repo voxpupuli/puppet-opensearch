@@ -20,6 +20,8 @@
 #   Whether to enable the `apt::pin` or `yum::versionlock` for the package.
 # @param apt_pin_priority
 #   The priority for apt::pin of the opensearch package.
+# @param disable_install_demo_config
+#   Don't create the default config. See https://docs.opensearch.org/latest/install-and-configure/install-opensearch/debian/
 #
 # @param manage_config
 #   Whether to manage the configuration.
@@ -131,6 +133,7 @@ class opensearch (
   Enum['archive', 'download', 'repository'] $package_source                               = 'repository',
   Boolean                                   $pin_package                                  = true,
   Integer                                   $apt_pin_priority                             = 1001,
+  Boolean                                   $disable_install_demo_config                  = true,
 
   ##
   ## repository

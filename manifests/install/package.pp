@@ -69,6 +69,9 @@ class opensearch::install::package {
     ensure      => $ensure,
     provider    => $provider,
     source      => $source,
-    environment => ["OPENSEARCH_INITIAL_ADMIN_PASSWORD=${admin_password}"],
+    environment => [
+      "OPENSEARCH_INITIAL_ADMIN_PASSWORD=${admin_password}",
+      "DISABLE_INSTALL_DEMO_CONFIG=${opensearch::disable_install_demo_config}",
+    ],
   }
 }

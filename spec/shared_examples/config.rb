@@ -35,7 +35,7 @@ shared_examples 'config' do |parameter|
           'group'   => 'opensearch',
           'mode'    => '0640',
           'content' => settings.to_yaml,
-        }
+        },
       )
     }
 
@@ -47,7 +47,7 @@ shared_examples 'config' do |parameter|
           'group'   => 'opensearch',
           'mode'    => '0640',
           'content' => %r{-Xms#{parameter['heap_size']}},
-        }
+        },
       )
     }
 
@@ -67,7 +67,7 @@ shared_examples 'config' do |parameter|
       default_jvm_gc_settings,
       default_jvm_gc_logging_settings,
       parameter['jvm_gc_settings'],
-      parameter['jvm_gc_logging_settings']
+      parameter['jvm_gc_logging_settings'],
     ].flatten.each do |setting|
       match = setting.gsub(%r{([+*])}, '\\\\\\1')
 
@@ -75,7 +75,7 @@ shared_examples 'config' do |parameter|
         is_expected.to contain_file("#{config_directory}/jvm.options").with(
           {
             'content' => %r{#{match}},
-          }
+          },
         )
       }
     end

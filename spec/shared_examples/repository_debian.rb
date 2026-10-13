@@ -26,7 +26,7 @@ shared_examples 'repository_debian' do |parameter|
         'extract_path'    => '/usr/share/keyrings',
         'extract_command' => 'gpg --dearmor < %s > opensearch.keyring.gpg',
         'creates'         => '/usr/share/keyrings/opensearch.keyring.gpg',
-      }
+      },
     )
   }
 
@@ -38,7 +38,7 @@ shared_examples 'repository_debian' do |parameter|
         'release'  => 'stable',
         'repos'    => 'main',
         'keyring'  => '/usr/share/keyrings/opensearch.keyring.gpg',
-      }
+      },
     ).that_notifies('Exec[apt_update]')
   }
 end

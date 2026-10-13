@@ -12,7 +12,7 @@ shared_examples 'service' do |parameter, _facts|
           {
             'ensure' => 'present',
             'content' => %r{ExecStart=/opt/opensearch/bin/opensearch},
-          }
+          },
         )
       }
     end
@@ -22,7 +22,7 @@ shared_examples 'service' do |parameter, _facts|
         {
           'ensure' => parameter['service_ensure'],
           'enable' => parameter['service_enable'],
-        }
+        },
       )
     }
   end

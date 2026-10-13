@@ -25,7 +25,7 @@ shared_examples 'install_package' do |parameter, facts|
           'extract'  => false,
           'cleanup'  => true,
           'source'   => "https://artifacts.opensearch.org/releases/bundle/opensearch/#{parameter['version']}/#{file}",
-        }
+        },
       ).that_comes_before('Package[opensearch]')
     }
   else
@@ -48,7 +48,7 @@ shared_examples 'install_package' do |parameter, facts|
               'version'  => parameter['version'],
               'packages' => 'opensearch',
               'priority' => parameter['apt_pin_priority'],
-            }
+            },
           )
         }
       when 'RedHat'
@@ -56,7 +56,7 @@ shared_examples 'install_package' do |parameter, facts|
           is_expected.to contain_yum__versionlock('opensearch').with(
             {
               'version' => parameter['version'],
-            }
+            },
           )
         }
       end
@@ -69,7 +69,7 @@ shared_examples 'install_package' do |parameter, facts|
         'ensure'   => ensure_value,
         'provider' => provider,
         'source'   => source,
-      }
+      },
     )
   }
 end

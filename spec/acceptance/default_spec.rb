@@ -37,6 +37,11 @@ describe 'opensearch' do
       it { is_expected.to be_file }
       its(:content) { is_expected.to match(%r{---}) }
     end
+
+    describe command('/usr/share/opensearch/bin/opensearch --version') do
+      its(:stdout) { is_expected.to match(%r{Version:}) }
+      its(:exit_status) { is_expected.to eq 0 }
+    end
   end
 
   context 'uninstall' do

@@ -554,11 +554,11 @@ Default value: `undef`
 
 ##### <a name="-opensearch--repository_gpg_key"></a>`repository_gpg_key`
 
-Data type: `Stdlib::HTTPUrl`
+Data type: `Optional[Stdlib::HTTPUrl]`
 
 
 
-Default value: `'https://artifacts.opensearch.org/publickeys/opensearch.pgp'`
+Default value: `undef`
 
 ##### <a name="-opensearch--heap_dump_on_oom"></a>`heap_dump_on_oom`
 

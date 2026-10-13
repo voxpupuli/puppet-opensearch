@@ -142,7 +142,7 @@ class opensearch (
   Boolean                                   $manage_repository                            = true,
   Enum['present', 'absent']                 $repository_ensure                            = 'present',
   Optional[Stdlib::HTTPUrl]                 $repository_location                          = undef,
-  Stdlib::HTTPUrl                           $repository_gpg_key                           = 'https://artifacts.opensearch.org/publickeys/opensearch.pgp',
+  Optional[Stdlib::HTTPUrl]                 $repository_gpg_key                           = undef,
 
   ##
   ## opensearch settings
@@ -207,6 +207,16 @@ class opensearch (
   Boolean                                   $restart_on_config_change                     = true,
   Boolean                                   $restart_on_package_change                    = true,
 ) {
+  # the default opensearch version is still 2. latest/supported is 3
+  # both have different gpg keys
+  # users can also provide their own key
+  $default_key = if $version and versioncmp($version, '3') >= 0 {
+    'puppet:///modules/opensearch/opensearch-3.asc'
+  } else {
+    'puppet:///modules/opensearch/opensearch-2.asc'
+  }
+  $real_repository_gpg_key = pick($repository_gpg_key, $default_key)
+
   contain opensearch::install
   contain opensearch::config
   contain opensearch::service

@@ -91,7 +91,6 @@ def get_defaults(facts)
     'manage_repository'                   => true,
     'repository_ensure'                   => 'present',
     'repository_location'                 => :undef,
-    'repository_gpg_key'                  => 'https://artifacts.opensearch.org/publickeys/opensearch.pgp',
 
     ##
     ## opensearch settings

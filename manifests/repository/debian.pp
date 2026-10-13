@@ -11,13 +11,10 @@ class opensearch::repository::debian {
     false => pick($opensearch::repository_location, "https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearch::version[0]}.x/apt"),
   }
 
-  archive { '/tmp/opensearch.pgp':
-    ensure          => $opensearch::repository_ensure,
-    source          => $opensearch::repository_gpg_key,
-    extract         => true,
-    extract_path    => '/usr/share/keyrings',
-    extract_command => 'gpg --dearmor < %s > opensearch.keyring.gpg',
-    creates         => '/usr/share/keyrings/opensearch.keyring.gpg',
+  $key_name = if $opensearch::version and versioncmp($opensearch::version, '3') >= 0 {
+    'opensearch-3.asc'
+  } else {
+    'opensearch-2.asc'
   }
 
   apt::source { 'opensearch':
@@ -25,7 +22,10 @@ class opensearch::repository::debian {
     location => $location,
     release  => 'stable',
     repos    => 'main',
-    keyring  => '/usr/share/keyrings/opensearch.keyring.gpg',
+    key      => {
+      'name'   => $key_name,
+      'source' => $opensearch::real_repository_gpg_key,
+    },
   }
 
   include apt

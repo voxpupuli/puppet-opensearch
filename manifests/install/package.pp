@@ -61,6 +61,8 @@ class opensearch::install::package {
     }
   }
 
+  # from the upstream docs:
+  # minimum 8 character password and must contain at least one uppercase letter, one lowercase letter, one digit, and one special character that is strong
   $admin_password = extlib::cache_data('opensearch_cache_data', 'admin_password', extlib::random_password(32))
 
   package { 'opensearch':

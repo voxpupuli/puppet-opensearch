@@ -4,7 +4,46 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
-## [v1.1.0](https://github.com/voxpupuli/puppet-opensearch/tree/v1.1.0) (2023-08-02)
+## [v2.0.0](https://github.com/voxpupuli/puppet-opensearch/tree/v2.0.0) (2026-10-13)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-opensearch/compare/v1.1.0...v2.0.0)
+
+**Breaking changes:**
+
+- Drop puppet, update openvox minimum version to 8.19 [\#63](https://github.com/voxpupuli/puppet-opensearch/pull/63) ([TheMeier](https://github.com/TheMeier))
+
+**Implemented enhancements:**
+
+- Add EL9 support [\#83](https://github.com/voxpupuli/puppet-opensearch/pull/83) ([bastelfreak](https://github.com/bastelfreak))
+- Add Ubuntu 24.04 & 26.04 support [\#82](https://github.com/voxpupuli/puppet-opensearch/pull/82) ([bastelfreak](https://github.com/bastelfreak))
+- Add workaround for initial admin password [\#81](https://github.com/voxpupuli/puppet-opensearch/pull/81) ([bastelfreak](https://github.com/bastelfreak))
+- Update module dependencies [\#79](https://github.com/voxpupuli/puppet-opensearch/pull/79) ([teluq-pbrideau](https://github.com/teluq-pbrideau))
+- Add parameters in jvm.options [\#78](https://github.com/voxpupuli/puppet-opensearch/pull/78) ([teluq-pbrideau](https://github.com/teluq-pbrideau))
+- Update requirements to allow OpenVox 9 [\#75](https://github.com/voxpupuli/puppet-opensearch/pull/75) ([sebastianrakel](https://github.com/sebastianrakel))
+- support opensearch 3.x [\#73](https://github.com/voxpupuli/puppet-opensearch/pull/73) ([bugfood](https://github.com/bugfood))
+- Add support for Debian 12 [\#65](https://github.com/voxpupuli/puppet-opensearch/pull/65) ([smortex](https://github.com/smortex))
+- Make OOM heap dump configurable [\#64](https://github.com/voxpupuli/puppet-opensearch/pull/64) ([lemkep](https://github.com/lemkep))
+- puppetlabs/apt Allow 10.x, puppet/archive Allow 8.x [\#62](https://github.com/voxpupuli/puppet-opensearch/pull/62) ([TheMeier](https://github.com/TheMeier))
+- puppet systemd 9 [\#56](https://github.com/voxpupuli/puppet-opensearch/pull/56) ([jay7x](https://github.com/jay7x))
+- puppetlabs/systemd: Allow 6.x [\#50](https://github.com/voxpupuli/puppet-opensearch/pull/50) ([zilchms](https://github.com/zilchms))
+- add jvm\_gc\_config and jvm\_gc\_logging\_config parameter [\#47](https://github.com/voxpupuli/puppet-opensearch/pull/47) ([crazymind1337](https://github.com/crazymind1337))
+
+**Fixed bugs:**
+
+- disable Java security manager [\#87](https://github.com/voxpupuli/puppet-opensearch/pull/87) ([bastelfreak](https://github.com/bastelfreak))
+- Fix typo in documentation [\#85](https://github.com/voxpupuli/puppet-opensearch/pull/85) ([bastelfreak](https://github.com/bastelfreak))
+
+**Closed issues:**
+
+- Non-parametrized config in JVM settings [\#77](https://github.com/voxpupuli/puppet-opensearch/issues/77)
+- Opensearch 3 support [\#68](https://github.com/voxpupuli/puppet-opensearch/issues/68)
+- Install fails, Unknown function: 'stdlib::to\_yaml' [\#40](https://github.com/voxpupuli/puppet-opensearch/issues/40)
+
+**Merged pull requests:**
+
+- Add a name to the yum repository [\#41](https://github.com/voxpupuli/puppet-opensearch/pull/41) ([smortex](https://github.com/smortex))
+
+## [v1.1.0](https://github.com/voxpupuli/puppet-opensearch/tree/v1.1.0) (2023-08-03)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-opensearch/compare/v1.0.0...v1.1.0)
 

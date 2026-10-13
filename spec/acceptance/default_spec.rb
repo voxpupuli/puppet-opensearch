@@ -39,7 +39,7 @@ describe 'opensearch' do
     end
 
     describe command('/usr/share/opensearch/bin/opensearch --version') do
-      its(:stdout) { is_expected.to match(%r{Version:}) }
+      its(:stdout) { is_expected.to match(%r{Version: 2.}) }
       its(:exit_status) { is_expected.to eq 0 }
     end
   end
@@ -87,7 +87,7 @@ describe 'opensearch' do
     end
 
     describe command('/opt/opensearch/bin/opensearch --version') do
-      its(:stdout) { is_expected.to match(%r{Version:}) }
+      its(:stdout) { is_expected.to match(%r{Version: 2.9.0}) }
       its(:exit_status) { is_expected.to eq 0 }
     end
   end

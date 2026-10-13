@@ -32,6 +32,16 @@ describe 'opensearch' do
       it { is_expected.to contain 'cluster.name: opensearch' }
       it { is_expected.to contain 'http.port: 9200' }
     end
+
+    describe file('/opt/puppetlabs/puppet/cache/opensearch_cache_data/admin_password') do
+      it { is_expected.to be_file }
+      its(:content) { is_expected.to match(%r{---}) }
+    end
+
+    describe command('/usr/share/opensearch/bin/opensearch --version') do
+      its(:stdout) { is_expected.to match(%r{Version:}) }
+      its(:exit_status) { is_expected.to eq 0 }
+    end
   end
 
   context 'uninstall' do
@@ -42,6 +52,16 @@ describe 'opensearch' do
         }
       PP
     end
+
+    # rubocop:disable RSpec/RepeatedExampleGroupBody
+    describe file('/usr/share/opensearch/bin/opensearch') do
+      it { is_expected.not_to exist }
+    end
+
+    describe file('/opt/opensearch/bin/opensearch') do
+      it { is_expected.not_to exist }
+    end
+    # rubocop:enable RSpec/RepeatedExampleGroupBody
   end
 
   context 'when installing from an archive' do
@@ -64,6 +84,11 @@ describe 'opensearch' do
     describe service('opensearch') do
       it { is_expected.to be_enabled }
       it { is_expected.to be_running }
+    end
+
+    describe command('/opt/opensearch/bin/opensearch --version') do
+      its(:stdout) { is_expected.to match(%r{Version:}) }
+      its(:exit_status) { is_expected.to eq 0 }
     end
   end
 end

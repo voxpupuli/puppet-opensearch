@@ -32,6 +32,11 @@ describe 'opensearch' do
       it { is_expected.to contain 'cluster.name: opensearch' }
       it { is_expected.to contain 'http.port: 9200' }
     end
+
+    describe file('/opt/puppetlabs/puppet/cache/opensearch_cache_data/admin_password') do
+      it { is_expected.to be_file }
+      its(:content) { is_expected.to match(%r{---}) }
+    end
   end
 
   context 'uninstall' do

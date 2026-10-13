@@ -52,6 +52,16 @@ describe 'opensearch' do
         }
       PP
     end
+
+    # rubocop:disable RSpec/RepeatedExampleGroupBody
+    describe file('/usr/share/opensearch/bin/opensearch') do
+      it { is_expected.not_to exist }
+    end
+
+    describe file('/opt/opensearch/bin/opensearch') do
+      it { is_expected.not_to exist }
+    end
+    # rubocop:enable RSpec/RepeatedExampleGroupBody
   end
 
   context 'when installing from an archive' do
@@ -74,6 +84,11 @@ describe 'opensearch' do
     describe service('opensearch') do
       it { is_expected.to be_enabled }
       it { is_expected.to be_running }
+    end
+
+    describe command('/opt/opensearch/bin/opensearch --version') do
+      its(:stdout) { is_expected.to match(%r{Version:}) }
+      its(:exit_status) { is_expected.to eq 0 }
     end
   end
 end

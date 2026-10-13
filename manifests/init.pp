@@ -15,7 +15,7 @@
 # @param package_provider
 #   The provider for the package to be used to install the package.
 # @param package_directory
-#   The directory to install the package. Only used for package_install_method = 'archive'.
+#   The directory to install the package. Only used for package_source = 'archive'.
 # @param pin_package
 #   Whether to enable the `apt::pin` or `yum::versionlock` for the package.
 # @param apt_pin_priority

@@ -138,7 +138,7 @@ The provider for the package to be used to install the package.
 
 Data type: `Stdlib::Absolutepath`
 
-The directory to install the package. Only used for package_install_method = 'archive'.
+The directory to install the package. Only used for package_source = 'archive'.
 
 Default value: `'/opt/opensearch'`
 

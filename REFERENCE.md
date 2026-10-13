@@ -41,6 +41,7 @@ The following parameters are available in the `opensearch` class:
 * [`pin_package`](#-opensearch--pin_package)
 * [`apt_pin_priority`](#-opensearch--apt_pin_priority)
 * [`disable_install_demo_config`](#-opensearch--disable_install_demo_config)
+* [`disable_security_plugin`](#-opensearch--disable_security_plugin)
 * [`manage_config`](#-opensearch--manage_config)
 * [`use_default_settings`](#-opensearch--use_default_settings)
 * [`default_settings`](#-opensearch--default_settings)
@@ -164,6 +165,14 @@ Default value: `1001`
 Data type: `Boolean`
 
 Don't create the default config. See https://docs.opensearch.org/latest/install-and-configure/install-opensearch/debian/
+
+Default value: `true`
+
+##### <a name="-opensearch--disable_security_plugin"></a>`disable_security_plugin`
+
+Data type: `Boolean`
+
+Don't configure the plugin. See https://docs.opensearch.org/latest/install-and-configure/install-opensearch/debian/
 
 Default value: `true`
 

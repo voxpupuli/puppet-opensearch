@@ -22,6 +22,8 @@
 #   The priority for apt::pin of the opensearch package.
 # @param disable_install_demo_config
 #   Don't create the default config. See https://docs.opensearch.org/latest/install-and-configure/install-opensearch/debian/
+# @param disable_security_plugin
+#   Don't configure the plugin. See https://docs.opensearch.org/latest/install-and-configure/install-opensearch/debian/
 #
 # @param manage_config
 #   Whether to manage the configuration.
@@ -134,6 +136,7 @@ class opensearch (
   Boolean                                   $pin_package                                  = true,
   Integer                                   $apt_pin_priority                             = 1001,
   Boolean                                   $disable_install_demo_config                  = true,
+  Boolean                                   $disable_security_plugin                      = true,
 
   ##
   ## repository

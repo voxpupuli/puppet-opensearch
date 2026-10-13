@@ -17,19 +17,11 @@ shared_examples 'repository_debian' do |parameter|
                parameter['repository_location']
              end
 
-  it {
-    is_expected.to contain_archive('/tmp/opensearch.pgp').with(
-      {
-        'ensure'          => parameter['repository_ensure'],
-        'source'          => parameter['repository_gpg_key'],
-        'extract'         => true,
-        'extract_path'    => '/usr/share/keyrings',
-        'extract_command' => 'gpg --dearmor < %s > opensearch.keyring.gpg',
-        'creates'         => '/usr/share/keyrings/opensearch.keyring.gpg',
-      },
-    )
-  }
-
+  key_version = if parameter['version'] && (parameter['version'] == '3.9.0')
+                  '3'
+                else
+                  '2'
+                end
   it {
     is_expected.to contain_apt__source('opensearch').with(
       {
@@ -37,7 +29,10 @@ shared_examples 'repository_debian' do |parameter|
         'location' => location,
         'release'  => 'stable',
         'repos'    => 'main',
-        'keyring'  => '/usr/share/keyrings/opensearch.keyring.gpg',
+        'key'      => {
+          'name'   => "opensearch-#{key_version}.asc",
+          'source' => "puppet:///modules/opensearch/opensearch-#{key_version}.asc",
+        },
       },
     ).that_notifies('Exec[apt_update]')
   }

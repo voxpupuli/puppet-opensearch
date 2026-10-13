@@ -21,6 +21,14 @@ TESTS = {
     'version' => '2.6.0',
     'package_source' => 'download',
   },
+  'with installation via download and version 3.9.0' => {
+    'version' => '3.9.0',
+    'package_source' => 'download',
+  },
+  'with installation via repository and version 3.9.0' => {
+    'version' => '3.9.0',
+    'package_source' => 'repository',
+  },
   'with some settings given' => {
     'settings' => {
       'http_max_content_length' => 10,

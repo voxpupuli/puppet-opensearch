@@ -8,7 +8,7 @@
   "dependencies": [
     {
       "name": "puppetlabs/apt",
-      "version_requirement": ">= 7.0.0 < 11.0.0"
+      "version_requirement": ">= 7.0.0 < 12.0.0"
     },
     {
       "name": "puppet/archive",
@@ -16,7 +16,7 @@
     },
     {
       "name": "puppetlabs/concat",
-      "version_requirement": ">= 1.2.5 < 10.0.0"
+      "version_requirement": ">= 1.2.5 < 11.0.0"
     },
     {
       "name": "puppet/extlib",
@@ -24,15 +24,15 @@
     },
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 9.0.0 < 10.0.0"
+      "version_requirement": ">= 9.0.0 < 11.0.0"
     },
     {
       "name": "puppet/systemd",
-      "version_requirement": ">= 2.10.0 < 9.0.0"
+      "version_requirement": ">= 2.10.0 < 11.0.0"
     },
     {
       "name": "puppet/yum",
-      "version_requirement": ">= 5.0.0 < 8.0.0"
+      "version_requirement": ">= 5.0.0 < 9.0.0"
     }
   ],
   "operatingsystem_support": [

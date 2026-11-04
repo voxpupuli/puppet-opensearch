@@ -3,6 +3,7 @@
 #
 # @param version
 #   The version to be installed. See also: https://opensearch.org/downloads.html
+#   Can be specific `'3.9.0'` (String) or generic `3` (Integer) release
 #
 # @param manage_package
 #   Whether to manage the package installation.
@@ -124,7 +125,7 @@ class opensearch (
   ##
   ## version
   ##
-  Optional[String]                          $version                                      = undef,
+  Optional[Variant[Pattern[/\d\.\d\.\d/],Integer]] $version                               = undef,
 
   ##
   ## package values
@@ -210,7 +211,7 @@ class opensearch (
   # the default opensearch version is still 2. latest/supported is 3
   # both have different gpg keys
   # users can also provide their own key
-  $default_key = if $version and versioncmp($version, '3') >= 0 {
+  $default_key = if $version and versioncmp(String($version), '3') >= 0 {
     'puppet:///modules/opensearch/opensearch-3.asc'
   } else {
     'puppet:///modules/opensearch/opensearch-2.asc'

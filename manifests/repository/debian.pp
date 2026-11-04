@@ -8,10 +8,10 @@ class opensearch::repository::debian {
 
   $location = $opensearch::version =~ Undef ? {
     true  => pick($opensearch::repository_location, 'https://artifacts.opensearch.org/releases/bundle/opensearch/2.x/apt'),
-    false => pick($opensearch::repository_location, "https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearch::version[0]}.x/apt"),
+    false => pick($opensearch::repository_location, "https://artifacts.opensearch.org/releases/bundle/opensearch/${String($opensearch::version)[0]}.x/apt"),
   }
 
-  $key_name = if $opensearch::version and versioncmp($opensearch::version, '3') >= 0 {
+  $key_name = if $opensearch::version and versioncmp(String($opensearch::version), '3') >= 0 {
     'opensearch-3.asc'
   } else {
     'opensearch-2.asc'

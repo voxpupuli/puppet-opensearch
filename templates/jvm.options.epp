@@ -80,7 +80,7 @@
 <%= $setting %>
 <% } -%>
 
-<% if $opensearch::version and versioncmp($opensearch::version, '3') >= 0 { -%>
+<% if $opensearch::version and versioncmp(String($opensearch::version), '3') >= 0 { -%>
 # JDK 20+ Incubating Vector Module for SIMD optimizations;
 # disabling may reduce performance on vector optimized lucene
 20-:--add-modules=jdk.incubator.vector

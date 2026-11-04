@@ -8,10 +8,10 @@ class opensearch::repository::redhat {
 
   $baseurl = $opensearch::version =~ Undef ? {
     true  => pick($opensearch::repository_location, 'https://artifacts.opensearch.org/releases/bundle/opensearch/2.x/yum'),
-    false => pick($opensearch::repository_location, "https://artifacts.opensearch.org/releases/bundle/opensearch/${opensearch::version[0]}.x/yum"),
+    false => pick($opensearch::repository_location, "https://artifacts.opensearch.org/releases/bundle/opensearch/${String($opensearch::version)[0]}.x/yum"),
   }
 
-  $key_version = if $opensearch::version and versioncmp($opensearch::version, '3') >= 0 {
+  $key_version = if $opensearch::version and versioncmp(String($opensearch::version), '3') >= 0 {
     '3'
   } else {
     '2'

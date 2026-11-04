@@ -29,6 +29,10 @@ TESTS = {
     'version' => '3.9.0',
     'package_source' => 'repository',
   },
+  'with installation via repository and generic version 3.x' => {
+    'version' => 3,
+    'package_source' => 'repository',
+  },
   'with some settings given' => {
     'settings' => {
       'http_max_content_length' => 10,

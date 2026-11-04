@@ -12,12 +12,12 @@ shared_examples 'repository_debian' do |parameter|
                  parameter['repository_location']
                end
              elsif parameter['repository_location'] == :undef
-               "https://artifacts.opensearch.org/releases/bundle/opensearch/#{parameter['version'][0]}.x/apt"
+               "https://artifacts.opensearch.org/releases/bundle/opensearch/#{parameter['version'].to_s[0]}.x/apt"
              else
                parameter['repository_location']
              end
 
-  key_version = if parameter['version'] && (parameter['version'] == '3.9.0')
+  key_version = if parameter['version'] && (parameter['version'].to_s[0] == '3')
                   '3'
                 else
                   '2'

@@ -7,8 +7,8 @@ class opensearch::install::package {
   assert_private()
 
   if $opensearch::package_source == 'download' {
-    if $opensearch::version =~ Undef {
-      fail("Using 'opensearch::package_source: download' requires to set a version via 'opensearch::version: <version>'!")
+    if $opensearch::version =~ Variant[Undef, Integer] {
+      fail("Using 'opensearch::package_source: download' requires to set a specific version via 'opensearch::version: <version>'!")
     }
 
     $ensure   = $opensearch::package_ensure
@@ -28,7 +28,11 @@ class opensearch::install::package {
 
     Archive[$source] -> Package['opensearch']
   } else {
-    $ensure   = pick($opensearch::version, $opensearch::package_ensure)
+    if $opensearch::version =~ Variant[Undef, Integer] {
+      $ensure = $opensearch::package_ensure
+    } else {
+      $ensure = pick($opensearch::version, $opensearch::package_ensure)
+    }
     $provider = undef
     $source   = undef
 
@@ -36,7 +40,7 @@ class opensearch::install::package {
       contain opensearch::repository
     }
 
-    if $opensearch::version !~ Undef and $opensearch::pin_package {
+    if $opensearch::version =~ String and $opensearch::pin_package {
       case $facts['os']['family'] {
         'Debian': {
           include apt

@@ -94,9 +94,10 @@ The following parameters are available in the `opensearch` class:
 
 ##### <a name="-opensearch--version"></a>`version`
 
-Data type: `Optional[String]`
+Data type: `Optional[Variant[Pattern[/\d\.\d\.\d/],Integer]]`
 
 The version to be installed. See also: https://opensearch.org/downloads.html
+Can be specific `'3.9.0'` (String) or generic `3` (Integer) release
 
 Default value: `undef`
 

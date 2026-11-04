@@ -29,7 +29,7 @@ shared_examples 'install_package' do |parameter, facts|
       ).that_comes_before('Package[opensearch]')
     }
   else
-    ensure_value = if parameter['version'] == :undef
+    ensure_value = if parameter['version'] == :undef || parameter['version'].is_a?(Integer)
                      parameter['package_ensure']
                    else
                      parameter['version']
@@ -39,7 +39,7 @@ shared_examples 'install_package' do |parameter, facts|
 
     include_examples 'repository', parameter, facts if parameter['manage_repository']
 
-    if (parameter['version'] != :undef) && parameter['pin_package']
+    if parameter['version'].is_a?(String) && parameter['pin_package']
       case facts[:os]['family']
       when 'Debian'
         it {

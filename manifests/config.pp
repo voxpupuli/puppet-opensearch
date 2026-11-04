@@ -119,6 +119,14 @@ class opensearch::config {
       content => $notifications_notifications_core.stdlib::to_yaml,
     }
 
+    file { "${config_directory}/opensearch-observability/observability.yml":
+      ensure  => file,
+      owner   => 'opensearch',
+      group   => 'opensearch',
+      mode    => '0640',
+      content => $observability_observability.stdlib::to_yaml,
+    }
+
     file { "${config_directory}/opensearch-reports-scheduler/reports-scheduler.yml":
       ensure  => file,
       owner   => 'opensearch',
